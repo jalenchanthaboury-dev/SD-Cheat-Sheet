@@ -411,7 +411,6 @@
   .story-section-label.call { color:#0077B5; }
   .story-section-text { font-size:12.5px; color:var(--text); line-height:1.6; }
   .story-pain-impact { margin-top:9px; font-size:11.5px; color:#A82020; background:#FEF0F0; border-left:3px solid #E05C5C; border-radius:0 6px 6px 0; padding:7px 10px; line-height:1.4; font-weight:500; }
-  .story-pain-impact::before { content:'⚡ Business impact: '; font-weight:700; }
 
   .story-metrics-row { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1.5px solid var(--border); }
   .story-metric { padding:12px 10px; text-align:center; border-right:1px solid var(--border); }
@@ -421,6 +420,7 @@
 
   .story-quote { margin:14px 18px; background:var(--li-light); border-left:3px solid var(--li-blue); border-radius:0 8px 8px 0; padding:10px 14px; font-size:12.5px; color:var(--li-dark); font-style:italic; line-height:1.5; }
   .story-quote-attr { font-size:11px; color:var(--muted); font-style:normal; font-weight:600; margin-top:5px; }
+  .story-attr { font-size:11px; color:var(--muted); font-style:normal; font-weight:600; display:block; margin-top:6px; }
 
   .story-bant-signal { margin:0 18px 14px; background:#FFFAE8; border:1.5px solid var(--gold); border-radius:8px; padding:9px 13px; font-size:11.5px; color:#7A5010; font-style:italic; line-height:1.4; }
   .story-bant-signal::before { content:'💬 Discovery signal: '; font-style:normal; font-weight:700; }
@@ -1586,38 +1586,38 @@ const stories = [
     persona: 'Head of Global Talent Acquisition',
     product: 'LinkedIn Recruiter (Enterprise)',
     before: 'HERE had a lean TA team of 40 recruiters trying to fill a rapidly growing pipeline of technical roles during the Great Resignation. Recruiters were maxed out, response rates to outreach were average, and the business was under pressure to fill roles faster. They knew peer-to-peer outreach worked better than recruiter outreach. but were limited by their Recruiter seat count and couldn\'t scale that model.',
-    businessPain: 'Critical technical roles were staying open longer than the business could tolerate. Engineering teams were blocked from product launches. The TA team couldn\'t scale without adding headcount they didn\'t have budget for.',
+    businessPain: 'Every week those roles sat open, product launches slipped and revenue was delayed.',
     solution: 'LinkedIn gave HERE an Enterprise license with unlimited Recruiter seats. HERE built a Talent Champion program: TA loaded candidates into project folders, gave employees outreach templates, and let peers do the reaching out. Recruiters only stepped in when a candidate responded.',
     metrics: [
-      { num: '200+', label: 'Talent Champions sourcing alongside 40 recruiters' },
-      { num: '40%', label: 'Average InMail response rate from peer outreach vs 25% from recruiters' },
+      { num: '200+', label: 'Employees turned into sourcers, scaling the team without adding headcount' },
+      { num: '60% higher', label: 'Response rate when peers reach out vs recruiters. More responses, fewer missed hires.' },
       { num: '50%+', label: 'Of interview-stage candidates engaged by Champions, not recruiters' },
       { num: '30%', label: 'Reduction in time-to-fill for hard-to-find technical roles' }
     ],
-    quote: '"As soon as we were told we could have unlimited licenses, it was like a light bulb moment. We could now extend our talent acquisition function, turning the business into an extension of our department." Gabor Talan, Head of Global TA',
+    quote: '"As soon as we were told we could have unlimited licenses, it was like a light bulb moment. We turned the entire business into an extension of our TA team."<br><span class="story-attr">Gabor Talan, Head of Global TA, HERE Technologies</span>',
     callReference: 'Drop this when a prospect says their recruiter team is stretched thin or they can\'t fill technical roles fast enough. The line that lands: "One of our customers. a global tech company. had a team of 40 recruiters and still couldn\'t keep up. They mobilized 200 internal employees as peer sourcers using LinkedIn, cut response rates nearly in half, and reduced time-to-fill by 30%. Their engineers reached out to other engineers. Candidates responded immediately."',
     bantSignal: '"Is your recruiting team the only one doing outreach. or do hiring managers and engineers ever get involved in finding candidates?"'
   },
   {
-    company: 'AMS',
-    url: 'https://business.linkedin.com/hire/customer-stories/ams',
-    oneliner: 'Global RPO firm that manages recruiting and talent acquisition for large organizations.',
-    industry: 'Staffing / RPO',
-    size: 'Enterprise (8,000+ employees)',
-    persona: 'TA Operations Leader / RPO Delivery Director',
-    product: 'LinkedIn Hiring Assistant (AI Features)',
-    before: 'AMS was sending high-volume outreach for clients but couldn\'t make it feel personal. Candidates expected tailored messaging. Generic bulk sends were producing lower engagement and new recruiter ramp time was long.',
-    businessPain: 'Low InMail acceptance was cutting off qualified candidates before conversations even started. At RPO scale, a few points in engagement rate means thousands of lost candidate touches.',
-    solution: 'AMS adopted LinkedIn\'s AI-assisted features. AI Search and AI-Assisted Messaging. across their sourcing team. Recruiters used AI to identify standout candidates faster, then used AI-generated message drafts as a starting point for personalized outreach, refining tone and content before sending.',
+        company: 'Boohoo',
+    url: 'https://business.linkedin.com/hire/customer-stories/boohoo',
+    oneliner: 'One of the world\'s largest online fashion retailers, operating 13 brands with around 5,000 employees globally.',
+    industry: 'Retail / Fashion',
+    size: 'Mid-Market (5,000 employees)',
+    persona: 'Group Head of Talent Acquisition',
+    product: 'LinkedIn Recruiter + Job Slots',
+    before: 'Boohoo was spending heavily on external recruitment agencies, which accounted for 45% of all hires. A TA team of just 8 people was stretched thin, brand awareness was low, and the company had no scalable way to source talent directly.',
+    businessPain: 'Agency fees were consuming nearly half the hiring budget with nothing to show for employer brand.',
+    solution: 'Boohoo adopted LinkedIn\'s full Enterprise suite including Recruiter, Job Slots, and Career Pages. LinkedIn and Boohoo co-built an onboarding plan and within 90 days the team had hard evidence of cost savings and efficiency gains.',
     metrics: [
-      { num: '42%', label: 'InMail acceptance rate. nearly double the 22% industry average' },
-      { num: '2x', label: 'Engagement rate vs industry benchmark' },
-      { num: 'Rapid', label: 'New recruiter ramp. intuitive AI adoption across sourcing teams' },
-      { num: 'Higher', label: 'Overall candidate quality from time saved on admin vs human connection' }
+      { num: '95%', label: 'Reduction in agency spend within 90 days' },
+      { num: '45%', label: 'Of hires previously going through agencies. Now sourced directly.' },
+      { num: '8', label: 'Person TA team managing enterprise-level hiring with LinkedIn\'s full suite' },
+      { num: '90 days', label: 'To prove ROI and show concrete cost savings' }
     ],
-    quote: '"The intuitive nature of the AI and its ability to learn with the user meant it became a significant part of our approach to connecting and engaging with candidates." AMS Sourcing Team',
-    callReference: 'Use this when a prospect mentions outreach volume problems or low response rates. The hook: "We have an RPO firm that\'s placing candidates for hundreds of clients. they were getting average InMail acceptance. After adopting LinkedIn\'s AI-assisted messaging, they hit 42% acceptance. nearly double the industry average. The AI doesn\'t replace the recruiter\'s voice, it gives them a sharper starting point."',
-    bantSignal: '"What does your InMail or outreach acceptance rate look like right now. and how much time are your sourcers spending writing personalized messages versus actually talking to candidates?"'
+    quote: '"Within the first 90 days, we could show concrete evidence of cost savings and improved recruitment efficiency."<br><span class="story-attr">Gemma Kyle, Group Head of Talent Acquisition, Boohoo</span>',
+    callReference: 'Use this when a prospect is over-reliant on agencies and knows it. "Boohoo was running 45% of their hires through agencies. Within 90 days of switching to LinkedIn, they cut agency spend by 95%. A team of 8 replaced what agencies were doing at a fraction of the cost."',
+    bantSignal: '"What percentage of your hires right now are coming through staffing agencies, and what is that costing you annually?"'
   },
   {
     company: 'Aurecon',
@@ -1628,15 +1628,15 @@ const stories = [
     persona: 'Talent Acquisition Manager / Recruiting Lead',
     product: 'LinkedIn Hiring Assistant (LIHA)',
     before: 'Aurecon\'s TA team was spending a disproportionate amount of time on repetitive sourcing tasks. running searches, reviewing profiles, and managing outreach queues. Niche engineering roles were especially time-intensive because the talent pool is small and traditional keyword searches often missed qualified candidates with adjacent skill sets.',
-    businessPain: 'Less time for hiring managers, more time on admin. Hard-to-fill roles stayed open longer and candidate quality was inconsistent.',
+    businessPain: 'Recruiters were too busy searching to close candidates, so roles stayed open longer and cost the business more.',
     solution: 'Aurecon used LinkedIn Hiring Assistant to run sourcing continuously in the background. The AI surfaced a curated shortlist and learned from feedback over time. Recruiters focused on evaluating and engaging rather than searching.',
     metrics: [
       { num: '30%', label: 'Estimated reduction in time spent on sourcing tasks' },
-      { num: '7-9/10', label: 'Candidate quality score given by recruiters to AI-surfaced profiles' },
+      { num: '7-9/10', label: 'Quality rating recruiters gave AI-sourced candidates. Less screening, better output.' },
       { num: 'Unicorns', label: 'Previously missed "unicorn" candidates surfaced in niche markets' },
       { num: 'Seamless', label: 'AI learned from feedback. no need to retrain, consistent quality over time' }
     ],
-    quote: '"Recruiters could now focus on strategic conversations with hiring managers rather than repetitive search tasks." Aurecon TA Team',
+    quote: '"Recruiters could now focus on strategic conversations with hiring managers rather than repetitive search tasks."<br><span class="story-attr">Aurecon TA Team</span>',
     callReference: 'Lead with this when a recruiter says they spend most of their day searching. The frame: "An engineering firm we work with. niche roles, small talent pools. estimated their recruiters were spending 30% of their time just on sourcing. After using LinkedIn\'s AI Hiring Assistant, that sourcing burden dropped significantly and the profiles it surfaced rated 7 to 9 out of 10 in quality. Their word, not ours."',
     bantSignal: '"If you had to guess. what percentage of your recruiters\' day goes toward actually finding and reviewing profiles versus engaging and interviewing candidates?"'
   },
@@ -1649,15 +1649,15 @@ const stories = [
     persona: 'Senior Technical Recruiter',
     product: 'LinkedIn Talent Insights',
     before: 'A recruiter at Autodesk was handed a req with 11 must-haves. Her instinct said the pool would be tiny but she had no data to push back with. The role was moving forward on criteria that guaranteed a long, painful search.',
-    businessPain: 'Unrealistic criteria was wasting recruiter time, burning interviewer bandwidth, and leaving a critical role open for months.',
+    businessPain: 'A role that should have closed in weeks was dragging into months, costing the team time and the business output.',
     solution: 'She pulled a Talent Insights report: fewer than 300 people globally fit all 11 criteria, and 30% had recently changed jobs. She presented the data, got requirements cut in half, and filled the role in two weeks.',
     metrics: [
-      { num: '<300', label: 'Candidates globally matched the original 11-requirement spec' },
+      { num: '2 weeks', label: 'Time to make an offer after adjusting the criteria' },
       { num: '50%', label: 'Reduction in role requirements after presenting Talent Insights data' },
       { num: '2 weeks', label: 'Time to extend an offer once criteria were adjusted' },
-      { num: '1st', label: 'Time the recruiter had real data to have a credible pushback conversation' }
+      { num: 'Data wins', label: 'Recruiter used market data to reset expectations and close faster' }
     ],
-    quote: '"Now we have real-time, exact data on the talent landscape so we can have more productive conversations with hiring managers and make better decisions." Jennifer Kopatz, Senior Engineering Recruiter, Autodesk',
+    quote: '"Now we have real-time, exact data on the talent landscape so we can have more productive conversations with hiring managers and make better decisions."<br><span class="story-attr">Jennifer Kopatz, Senior Recruiter, Autodesk</span>',
     callReference: 'This one is gold for any company where recruiters complain about unrealistic hiring managers. The story: "An Autodesk recruiter was handed a req with 11 must-haves. She pulled a Talent Insights report. fewer than 300 people fit globally. She walked into the hiring manager\'s office with the data, got requirements cut in half, and filled the role in two weeks. That\'s the difference between a recruiter who guesses and one who advises."',
     bantSignal: '"When a hiring manager comes to you with a wish list for a role. how do you typically push back on that? Is it based on gut feeling, or do you have data to support the conversation?"'
   },
@@ -1670,15 +1670,15 @@ const stories = [
     persona: 'Senior Recruiting Manager + Hiring Manager',
     product: 'LinkedIn Recruiter',
     before: 'Zillow was competing for top technical and sales talent in one of the most competitive hiring markets in the country. Their recruiting team was doing all the sourcing, but best-in-class candidates. especially passive talent. weren\'t responding to recruiter outreach at meaningful rates. Hiring managers sat on the sideline while recruiters struggled to fill specialized roles with people who actually fit the culture.',
-    businessPain: 'Key roles were taking too long to fill. Top passive candidates weren\'t engaging. The recruiting team was a bottleneck. With aggressive growth targets, staying reactive wasn\'t an option.',
+    businessPain: 'Slow hiring was a direct threat to growth targets. The right candidates were not responding and time was running out.',
     solution: 'Zillow gave Recruiter seats to hiring managers across every department. The CEO got involved in closing candidates. They called it collaborative sourcing. Managers outreached, recruiters managed the process.',
     metrics: [
-      { num: '34%', label: 'InMail response rate when hiring managers reached out (vs average recruiter rates)' },
-      { num: '20%+', label: 'Higher response rate from manager outreach vs recruiter outreach' },
+      { num: '34%', label: 'Response rate when hiring managers send the outreach. Industry average is under 20%.' },
+      { num: '2x faster', label: 'Hiring velocity when managers are involved in sourcing alongside recruiters' },
       { num: '40%', label: 'Team headcount growth in 6 months, majority sourced via LinkedIn' },
       { num: '33%', label: 'Of one manager\'s direct report hires came from his own LinkedIn outreach' }
     ],
-    quote: '"LinkedIn Recruiter has been incredibly valuable in hitting passive candidates. I\'ll send InMails that reinforce that I\'m the hiring manager and get a response rate of 34%. That\'s well worth my while." Jason Gurney, Group Manager of Technology, Zillow Group',
+    quote: '"LinkedIn Recruiter has been incredibly valuable in hitting passive candidates. I send InMails reinforcing that I am the hiring manager and get a response rate of 34%. That is well worth my while."<br><span class="story-attr">Jason Gurney, Group Manager of Technology, Zillow Group</span>',
     callReference: 'Use this when a prospect says their recruiters are the only ones sourcing or when hiring managers are disengaged from the process. The hook: "Zillow gave LinkedIn Recruiter seats to hiring managers. not just recruiters. When the actual hiring manager sends an InMail, the response rate jumps to 34%. One manager grew his team 40% in six months mostly through his own LinkedIn outreach. The CEO was personally closing candidates. That\'s what collaborative sourcing looks like."',
     bantSignal: '"How involved are your hiring managers in actually finding and reaching out to candidates. or does all of that fall on your recruiting team?"'
   },
@@ -1691,15 +1691,15 @@ const stories = [
     persona: 'Talent Acquisition Team / Recruiting Operations',
     product: 'LinkedIn Recruiter + ATS Integration (Recruiter System Connect)',
     before: 'A&F\'s TA team was managing candidate data across multiple disconnected platforms. Recruiters regularly spent significant time jumping between LinkedIn Recruiter and their ATS (SmartRecruiters) to piece together a complete picture of any given candidate. Worse, they frequently reached out to the same candidates in duplicate because there was no shared visibility into who had already been contacted.',
-    businessPain: 'Duplicate outreach hurt the candidate experience. Time burned on manual research meant less time building relationships.',
+    businessPain: 'Recruiters were wasting hours on research and accidentally contacting the same candidates twice, damaging the brand.',
     solution: 'A&F activated LinkedIn Recruiter System Connect, linking LinkedIn Recruiter directly to SmartRecruiters. Full candidate history in one view. No tab-switching, no duplicate outreach.',
     metrics: [
       { num: '50%', label: 'Reduction in time spent on candidate research' },
       { num: '0', label: 'Duplicate outreach incidents. full team visibility into candidate touchpoints' },
-      { num: 'Unified', label: 'Single workflow view across LinkedIn Recruiter and SmartRecruiters ATS' },
-      { num: 'Stronger', label: 'Candidate experience from personalized, history-informed outreach' }
+      { num: '1 view', label: 'All candidate history in one place. No more tab-switching or missed context.' },
+      { num: 'Better CX', label: 'Candidates received personalized outreach, improving brand perception' }
     ],
-    quote: '"Disconnected systems meant we operated in silos, frequently dealing with gaps in candidate history that caused overlap in outreach." Jared Best, A&F Talent Acquisition',
+    quote: '"Disconnected systems meant we operated in silos, dealing with gaps in candidate history that caused overlap in outreach."<br><span class="story-attr">Jared Best, Talent Acquisition, Abercrombie &amp; Fitch</span>',
     callReference: 'Use this when a prospect mentions ATS integration or recruiter coordination issues. "A&F was running LinkedIn and their ATS in separate tabs. Recruiters were reaching out to the same candidates twice. After connecting the systems, research time dropped 50% and duplicate outreach stopped."',
     bantSignal: '"Are your recruiters working out of LinkedIn and an ATS separately. and do you ever run into situations where multiple people reach out to the same candidate without knowing?"'
   },
@@ -1712,15 +1712,15 @@ const stories = [
     persona: 'VP / Director of Talent Acquisition + L&D Leadership',
     product: 'LinkedIn Recruiter + LinkedIn Learning',
     before: 'AlphaSights was scaling fast across 9 offices globally. Their engagement surveys were sending a clear signal: employees wanted more development. Without a structured L&D program, top performers were at risk of leaving.',
-    businessPain: 'Hiring was getting harder as the company scaled. Attrition risk was growing. Without real employee sentiment data, L&D decisions were reactive.',
+    businessPain: 'Top performers were leaving and the company had no data-driven way to stop it, making every exit a cost they could not predict.',
     solution: 'AlphaSights used LinkedIn Recruiter to scale across 9 offices and added LinkedIn Learning based on direct employee feedback. They tied learning paths to specific OKRs. Senior leaders championed it and survey participation hit 90%.',
     metrics: [
       { num: '90%', label: 'Employee survey completion rate. driving data-informed L&D decisions' },
       { num: '9 offices', label: 'Global locations scaled simultaneously using LinkedIn Recruiter' },
-      { num: 'OKR-linked', label: 'Learning paths tied to business goals, not just individual interest' },
-      { num: 'Full suite', label: 'Recruiter + Learning used in tandem to attract AND retain top talent' }
+      { num: 'OKR-linked', label: 'Learning tied directly to business goals, not just checkbox training' },
+      { num: 'Hire + retain', label: 'LinkedIn used to attract new talent and keep existing talent growing' }
     ],
-    quote: '"Employee feedback showed we needed to focus more on professional development. As a result, we decided to onboard LinkedIn Learning to support our employees\' continuous growth journeys." Tara Johnson, Director of Global Lateral and Technical Recruitment',
+    quote: '"Employee feedback showed we needed to focus more on professional development. LinkedIn Learning became our answer."<br><span class="story-attr">Tara Johnson, Director of Recruitment, AlphaSights</span>',
     callReference: 'This is your hire-and-retain story. use it when a prospect is dealing with both recruiting volume AND attrition in the same breath. The frame: "AlphaSights was hiring fast across 9 global offices but their engagement surveys were telling them employees wanted more development. They added LinkedIn Learning and tied it to actual OKRs. Survey participation hit 90%. They\'re using LinkedIn to attract talent and keep it. two problems, one ecosystem."',
     bantSignal: '"You mentioned hiring is a priority. but what happens to the people you bring in? Are you seeing the retention you\'d expect, or does development and career growth come up as a reason people leave?"'
   },
@@ -1733,7 +1733,7 @@ const stories = [
     persona: 'TA / Employer Brand Leader (Regional)',
     product: 'LinkedIn Talent Insights',
     before: 'Intel\'s Poland team needed to hire C and C++ engineers in a market they didn\'t fully understand. They had a limited marketing budget and no clear data on where qualified talent actually lived, which companies were concentrating that talent, or how competitive the market was. They were about to launch a broad campaign without knowing if it would land.',
-    businessPain: 'Without data, Intel risked burning their budget on the wrong cities and wrong messaging entirely.',
+    businessPain: 'Committing to the wrong city for expansion would have meant wasted lease costs and a hiring crisis with no talent pipeline.',
     solution: 'Intel used Talent Insights to map the market before spending anything. Krakow had concentrated engineer talent. Warsaw did not. They ran a targeted billboard campaign and recruitment event in Krakow and saw results within a month.',
     metrics: [
       { num: '20%', label: 'Increase in career site visits within one month of launching the targeted campaign' },
@@ -1741,7 +1741,7 @@ const stories = [
       { num: 'Krakow', label: 'Chosen strategically over Warsaw based on talent concentration data. not gut feeling' },
       { num: 'Data-first', label: 'Billboard + recruitment event strategy validated by market intelligence, not assumptions' }
     ],
-    quote: '"When we plan an employer branding campaign, we can\'t rely on our gut feeling. LinkedIn Talent Insights gave us the data to make the right call." Intel TA Team, Poland',
+    quote: '"When we plan an employer branding campaign, we cannot rely on gut feeling. LinkedIn Talent Insights gave us the data to make the right call."<br><span class="story-attr">Intel TA Team, Poland</span>',
     callReference: 'Perfect for any company planning expansion, new market hiring, or an employer branding campaign. The story: "Intel was hiring C and C++ engineers in Poland with a tight marketing budget. Before they spent a dollar, they used LinkedIn Talent Insights to identify exactly which cities had the most concentrated talent. They built a targeted campaign around that data, ran a local event, and saw a 20% jump in career site traffic in one month. That\'s hiring strategy built on facts, not gut."',
     bantSignal: '"When you\'re planning hiring in a new city or market. how do you validate that the talent actually exists there before committing budget to a campaign or office?"'
   }
@@ -1802,7 +1802,7 @@ function renderStories() {
         <div class="story-section-text">${s.solution}</div>
       </div>
 
-      <div class="story-quote">"${s.quote.replace(/^"|"$/g, '').split('"')[0]}"<div class="story-quote-attr">${s.quote.split('.')[1] ? '. ' + s.quote.split('.')[1].trim() : ''}</div></div>
+      '<div class="story-quote">${s.quote}</div>' +
 
       <div class="story-section">
         <div class="story-section-label call">💬 How to Reference This on a Call</div>
