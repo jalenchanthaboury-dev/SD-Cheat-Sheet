@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Talent Solutions Training Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Oswald:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --li-blue: #0077B5;
+    --li-dark: #004471;
+    --li-light: #E8F4FD;
+    --li-accent: #00A0DC;
+    --gold: #F5A623;
+    --green: #2DAE5D;
+    --red: #E05C5C;
+    --bg: #F7F9FB;
+    --card: #FFFFFF;
+    --text: #1B2A3B;
+    --muted: #6B7E93;
+    --border: #D8E5F0;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 14px;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #004471 0%, #0077B5 60%, #00A0DC 100%);
+    padding: 20px 28px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+  .li-logo {
+    background: #fff;
+    color: var(--li-blue);
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 18px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: -0.5px;
+  }
+  .header-title {
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.9;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .header-sub { color: rgba(255,255,255,0.7); font-size: 12px; }
+
+  .tabs { display: flex; gap: 4px; margin-top: 16px; flex-wrap: wrap; }
+  .tab {
+    padding: 10px 18px;
+    border: none;
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.75);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .tab:hover { background: rgba(255,255,255,0.2); color: white; }
+  .tab.active { background: var(--bg); color: var(--li-blue); font-weight: 600; }
+
+  .content { padding: 24px 28px; max-width: 1200px; margin: 0 auto; }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .product-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .product-card:hover { box-shadow: 0 8px 24px rgba(0,119,181,0.12); transform: translateY(-2px); border-color: var(--li-accent); }
+  .product-card.expanded { border-color: var(--li-blue); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .card-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .card-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.2; }
+  .card-tagline { font-size: 11.5px; color: var(--muted); margin-top: 2px; font-weight: 400; }
+
+  .card-anchor {
+    background: var(--li-light);
+    padding: 10px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--li-dark);
+    border-bottom: 1.5px solid var(--border);
+    letter-spacing: 0.2px;
+  }
+
+  .card-body { padding: 16px 18px; }
+
+  .fab-section { margin-bottom: 14px; }
+  .fab-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .fab-label.feature { color: var(--li-blue); }
+  .fab-label.advantage { color: #7B3FA8; }
+  .fab-label.benefit { color: var(--green); }
+  .fab-label::before { content: ''; display: block; width: 3px; height: 12px; border-radius: 2px; background: currentColor; }
+
+  .fab-items { display: flex; flex-direction: column; gap: 4px; }
+  .fab-item {
+    font-size: 12.5px;
+    color: var(--text);
+    padding: 5px 10px;
+    background: var(--bg);
+    border-radius: 6px;
+    line-height: 1.4;
+  }
+
+  .discovery-pill {
+    margin-top: 14px;
+    background: linear-gradient(135deg, #FFF8EC, #FFF3DC);
+    border: 1.5px solid #F5A623;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #7A5010;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .discovery-pill::before { content: '💬 '; font-style: normal; }
+
+  .pain-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .pain-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #FEF0F0;
+    color: #C0392B;
+    border: 1px solid #F4C2C2;
+    font-weight: 500;
+  }
+
+  .expand-btn {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: none;
+    border-top: 1.5px solid var(--border);
+    color: var(--li-blue);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.15s;
+  }
+  .expand-btn:hover { background: var(--li-light); }
+
+  .compare-title { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 4px; color: var(--text); }
+  .compare-sub { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+
+  .compare-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; border: 1.5px solid var(--border); }
+  .compare-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+  }
+  .compare-table th:first-child { color: var(--muted); font-weight: 500; background: var(--bg); }
+  .compare-table th.online { background: #EEF7FF; color: var(--li-blue); }
+  .compare-table th.corp { background: var(--li-blue); color: white; }
+  .compare-table td { padding: 11px 16px; font-size: 12.5px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .compare-table td:first-child { color: var(--muted); font-weight: 500; background: var(--bg); font-size: 12px; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: #F0F7FF; }
+  .compare-table tr:hover td:first-child { background: #E8F2FA; }
+
+  .yes-corp { color: var(--green); font-weight: 700; }
+  .no-cell { color: #ccc; font-weight: 400; }
+  tr.highlight td { background: #FFFAE8 !important; }
+
+  .discovery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .d-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    transition: all 0.2s;
+  }
+  .d-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(245,166,35,0.12); }
+  .d-product-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    background: var(--li-light);
+    color: var(--li-dark);
+  }
+  .d-question { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 10px; font-style: italic; }
+  .d-why { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .d-why strong { color: var(--text); }
+
+  .quiz-container { max-width: 620px; margin: 0 auto; }
+  .quiz-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .quiz-badge {
+    display: inline-block;
+    background: var(--li-blue);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .quiz-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-opt {
+    padding: 14px 20px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    color: var(--text);
+  }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--li-blue); background: var(--li-light); }
+  .quiz-opt.correct { border-color: var(--green); background: #EAFAF2; color: #1A7A47; }
+  .quiz-opt.wrong { border-color: var(--red); background: #FEF0F0; color: #A82020; }
+  .quiz-opt:disabled { cursor: default; }
+  .quiz-feedback {
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+  .quiz-feedback.correct { background: #EAFAF2; border: 1.5px solid var(--green); color: #1A5C35; }
+  .quiz-feedback.wrong { background: #FEF0F0; border: 1.5px solid var(--red); color: #8B1A1A; }
+  .quiz-next {
+    padding: 12px 32px;
+    background: var(--li-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .quiz-next:hover { background: var(--li-dark); }
+  .quiz-score { font-size: 13px; color: var(--muted); margin-bottom: 20px; font-weight: 500; }
+  .quiz-progress { display: flex; gap: 4px; margin-bottom: 20px; justify-content: center; }
+  .prog-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+  .prog-dot.done { background: var(--li-blue); }
+  .prog-dot.current { background: var(--gold); }
+
+  .result-card {
+    background: linear-gradient(135deg, var(--li-light), #fff);
+    border: 2px solid var(--li-blue);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+  .result-emoji { font-size: 48px; margin-bottom: 12px; }
+  .result-title { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--li-dark); margin-bottom: 8px; }
+  .result-score { font-size: 40px; font-weight: 700; color: var(--li-blue); margin-bottom: 8px; }
+  .result-sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .retry-btn {
+    padding: 12px 28px;
+    background: var(--li-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .section-header { margin-bottom: 20px; }
+  .section-header h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--text); margin-bottom: 4px; }
+  .section-header p { color: var(--muted); font-size: 13px; }
+
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tier-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: all 0.15s;
+  }
+  .tier-badge.active { background: var(--li-blue); color: white; border-color: var(--li-blue); }
+  .tier-badge:not(.active) { background: var(--card); color: var(--muted); border-color: var(--border); }
+  .tier-badge:hover:not(.active) { border-color: var(--li-blue); color: var(--li-blue); }
+
+  .tip-box {
+    margin-top: 14px;
+    background: #FFFAE8;
+    border: 1.5px solid #F5A623;
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 12.5px;
+    color: #7A5010;
+    line-height: 1.6;
+  }
+
+  /* STORIES */
+  .stories-filter-row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+  .story-filter { padding:5px 14px; border-radius:20px; border:1.5px solid var(--border); background:var(--card); color:var(--muted); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; cursor:pointer; transition:all 0.15s; }
+  .story-filter.active { background:var(--li-blue); color:white; border-color:var(--li-blue); }
+  .story-filter:hover:not(.active) { border-color:var(--li-blue); color:var(--li-blue); }
+
+  .stories-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(360px,1fr)); gap:18px; }
+
+  .story-card { background:var(--card); border:1.5px solid var(--border); border-radius:14px; overflow:hidden; transition:all 0.25s; }
+  .story-card:hover { box-shadow:0 8px 28px rgba(0,119,181,0.1); border-color:var(--li-accent); }
+
+  .story-card-top { padding:16px 18px 14px; border-bottom:1.5px solid var(--border); }
+  .story-product-badge { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; padding:3px 10px; border-radius:20px; background:var(--li-blue); color:white; white-space:nowrap; margin-bottom:8px; }
+  .story-company-link { text-decoration:none; display:block; margin-bottom:4px; }
+  .story-company { font-family:'Playfair Display',serif; font-size:18px; font-weight:900; color:var(--text); line-height:1.2; }
+  .story-company-link:hover .story-company { color:var(--li-blue); }
+  .story-link-icon { font-size:13px; color:var(--li-blue); opacity:0.7; }
+  .story-oneliner { font-size:12px; color:var(--muted); margin-bottom:12px; line-height:1.5; }
+  .story-meta-row { display:flex; flex-wrap:wrap; gap:5px; }
+  .story-meta-tag { font-size:10.5px; padding:3px 9px; border-radius:20px; background:var(--bg); border:1px solid var(--border); color:var(--muted); font-weight:500; }
+
+  .story-section { padding:14px 18px; border-bottom:1.5px solid var(--border); }
+  .story-section-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; margin-bottom:7px; }
+  .story-section-label.before { color:#E05C5C; }
+  .story-section-label.solution { color:#2DAE5D; }
+  .story-section-label.call { color:#0077B5; }
+  .story-section-text { font-size:12.5px; color:var(--text); line-height:1.6; }
+  .story-pain-impact { margin-top:9px; font-size:11.5px; color:#A82020; background:#FEF0F0; border-left:3px solid #E05C5C; border-radius:0 6px 6px 0; padding:7px 10px; line-height:1.4; font-weight:500; }
+
+  .story-metrics-row { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1.5px solid var(--border); }
+  .story-metric { padding:12px 10px; text-align:center; border-right:1px solid var(--border); }
+  .story-metric:last-child { border-right:none; }
+  .story-metric-num { font-family:'Playfair Display',serif; font-size:18px; font-weight:900; color:var(--li-blue); line-height:1; margin-bottom:4px; }
+  .story-metric-label { font-size:10px; color:var(--muted); line-height:1.3; }
+
+  .story-quote { margin:14px 18px; background:var(--li-light); border-left:3px solid var(--li-blue); border-radius:0 8px 8px 0; padding:10px 14px; font-size:12.5px; color:var(--li-dark); font-style:italic; line-height:1.5; }
+  .story-quote-attr { font-size:11px; color:var(--muted); font-style:normal; font-weight:600; margin-top:5px; }
+  .story-attr { font-size:11px; color:var(--muted); font-style:normal; font-weight:600; display:block; margin-top:6px; }
+
+  .story-bant-signal { margin:0 18px 14px; background:#FFFAE8; border:1.5px solid var(--gold); border-radius:8px; padding:9px 13px; font-size:11.5px; color:#7A5010; font-style:italic; line-height:1.4; }
+  .story-bant-signal::before { content:'💬 Discovery signal: '; font-style:normal; font-weight:700; }
+
+  .story-expand-btn { width:100%; padding:11px; background:none; border:none; border-top:1.5px solid var(--border); color:var(--li-blue); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; cursor:pointer; transition:background 0.15s; }
+  .story-expand-btn:hover { background:var(--li-light); }
+
+  /* STATS */
+  .stats-category { margin-bottom: 28px; }
+  .stats-category-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .stat-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    transition: all 0.2s;
+  }
+  .stat-card:hover { box-shadow: 0 4px 16px rgba(0,119,181,0.1); border-color: var(--li-accent); }
+  .stat-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 38px; font-weight: 700;
+    color: var(--li-blue);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .stat-desc { font-size: 14px; color: var(--text); font-weight: 500; line-height: 1.5; margin-bottom: 10px; }
+  .stat-use {
+    font-size: 11.5px; color: #7A5010;
+    background: #FFFAE8;
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 6px 10px;
+    line-height: 1.4;
+  }
+  .stat-use::before { content: '💬 Use when: '; font-weight: 700; }
+  .stat-source { font-size: 10px; color: var(--muted); margin-top: 7px; }
+
+  /* VISION MATCH GAME */
+  .vm-wrap { max-width: 680px; margin: 0 auto; }
+  .vm-progress-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .vm-progress-label { font-size:12px; font-weight:600; color:var(--muted); }
+  .vm-score-label { font-size:12px; font-weight:700; color:var(--li-blue); }
+  .vm-dots { display:flex; gap:6px; }
+  .vm-dot { width:10px; height:10px; border-radius:50%; background:var(--border); transition:all 0.2s; }
+  .vm-dot.done { background:var(--green); }
+  .vm-dot.active { background:var(--li-blue); transform:scale(1.2); }
+
+  .vm-customer-card { background:var(--card); border:1.5px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:16px; }
+  .vm-customer-header { display:flex; align-items:flex-start; justify-content:space-between; padding:16px 18px 12px; border-bottom:1.5px solid var(--border); }
+  .vm-company { font-family:'Playfair Display',serif; font-size:18px; font-weight:900; color:var(--text); }
+  .vm-meta { font-size:11.5px; color:var(--muted); margin-top:3px; }
+  .vm-call-badge { font-size:11px; font-weight:700; background:var(--li-light); color:var(--li-dark); padding:4px 12px; border-radius:20px; white-space:nowrap; }
+  .vm-quote { padding:16px 18px; font-size:13.5px; color:var(--text); line-height:1.6; font-style:italic; background:var(--bg); border-left:4px solid var(--li-blue); }
+
+  .vm-stage-nav { display:flex; gap:10px; margin-bottom:16px; justify-content:center; }
+  .vm-stage-pip { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; background:var(--border); color:var(--muted); transition:all 0.2s; }
+  .vm-stage-pip.done { background:var(--green); color:white; }
+  .vm-stage-pip.active { background:var(--li-blue); color:white; transform:scale(1.1); }
+
+  .vm-stage-card { background:var(--card); border:1.5px solid var(--border); border-radius:14px; padding:22px; margin-bottom:16px; }
+  .vm-stage-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--li-blue); margin-bottom:8px; }
+  .vm-stage-prompt { font-family:'Playfair Display',serif; font-size:17px; color:var(--text); line-height:1.4; margin-bottom:18px; }
+  .vm-options { display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+  .vm-opt { padding:14px 18px; border:2px solid var(--border); border-radius:10px; background:var(--bg); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; text-align:left; transition:all 0.2s; color:var(--text); line-height:1.4; }
+  .vm-opt:hover:not(:disabled) { border-color:var(--li-blue); background:var(--li-light); }
+  .vm-opt.correct { border-color:var(--green); background:#EAFAF2; color:#1A7A47; }
+  .vm-opt.wrong { border-color:var(--red); background:#FEF0F0; color:#A82020; }
+  .vm-opt.dim { border-color:var(--border); color:var(--muted); opacity:0.5; }
+  .vm-opt:disabled { cursor:default; }
+
+  .vm-feedback { padding:14px 18px; border-radius:10px; font-size:13px; line-height:1.6; margin-bottom:14px; }
+  .vm-feedback.correct { background:#EAFAF2; border:1.5px solid var(--green); color:#1A5C35; }
+  .vm-feedback.wrong { background:#FEF0F0; border:1.5px solid var(--red); color:#8B1A1A; }
+
+  .vm-gold-box { background:linear-gradient(135deg,#FFF8EC,#FFFDE8); border:2px solid var(--gold); border-radius:12px; padding:18px; margin-bottom:16px; }
+  .vm-gold-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#7A5010; margin-bottom:8px; }
+  .vm-gold-text { font-size:13px; color:#5A3A08; line-height:1.7; font-style:italic; }
+
+  .vm-next-btn { width:100%; padding:14px; background:var(--li-blue); color:white; border:none; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer; transition:background 0.2s; }
+  .vm-next-btn:hover { background:var(--li-dark); }
+
+  .vm-results-card { background:var(--card); border:2px solid var(--li-blue); border-radius:16px; padding:36px; text-align:center; }
+  .vm-result-emoji { font-size:52px; margin-bottom:12px; }
+  .vm-result-title { font-family:'Playfair Display',serif; font-size:26px; color:var(--li-dark); margin-bottom:6px; }
+  .vm-result-big { font-family:'Oswald',sans-serif; font-size:52px; font-weight:700; color:var(--li-blue); line-height:1; margin-bottom:6px; }
+  .vm-result-pct { font-size:14px; color:var(--muted); margin-bottom:24px; line-height:1.5; }
+  .vm-breakdown { text-align:left; margin-bottom:24px; display:flex; flex-direction:column; gap:10px; }
+  .vm-result-row { display:flex; align-items:center; gap:12px; }
+  .vm-result-company { font-size:13px; font-weight:600; color:var(--text); min-width:160px; }
+  .vm-result-score { font-size:13px; font-weight:700; color:var(--li-blue); min-width:28px; }
+  .vm-result-bar { flex:1; height:8px; background:var(--border); border-radius:4px; overflow:hidden; }
+  .vm-result-fill { height:100%; background:var(--li-blue); border-radius:4px; transition:width 0.4s; }
+  .vm-retry-btn { padding:14px 36px; background:var(--li-blue); color:white; border:none; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer; }
+  .vm-retry-btn:hover { background:var(--li-dark); }
+  .vm-opt.selected { border-color: var(--li-blue); background: var(--li-light); color: var(--li-dark); font-weight: 600; }
+  .vm-check { font-weight: 900; margin-right: 4px; }
+  .vm-build-counter { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+  .vm-submit-btn { width: 100%; padding: 13px; background: var(--li-dark); color: white; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; margin-bottom: 12px; transition: background 0.2s; }
+  .vm-submit-btn:hover { background: #002D50; }
+  .vm-draft-box { background: #F0F4F8; border: 1.5px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
+  .vm-draft-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 6px; }
+  .vm-draft-text { font-size: 13px; color: var(--text); line-height: 1.6; font-style: italic; }
+
+
+  .bant-subnav { display:flex; gap:8px; margin-bottom:20px; }
+  .bant-sub { padding:8px 18px; border:1.5px solid var(--border); border-radius:20px; background:var(--card); color:var(--muted); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; cursor:pointer; transition:all 0.15s; }
+  .bant-sub.active { background:var(--li-blue); color:white; border-color:var(--li-blue); }
+  .bant-sub:hover:not(.active) { border-color:var(--li-blue); color:var(--li-blue); }
+
+  .bant-banner { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:28px; }
+  .bant-pill { border-radius:10px; padding:14px 16px; cursor:pointer; border:2px solid transparent; transition:all 0.2s; }
+  .bant-pill:hover { transform:translateY(-2px); }
+  .bant-pill.b { background:#EAFAF2; border-color:#EAFAF2; }
+  .bant-pill.b:hover { border-color:#2DAE5D; }
+  .bant-pill.a { background:#F3EAFD; border-color:#F3EAFD; }
+  .bant-pill.a:hover { border-color:#7B3FA8; }
+  .bant-pill.n { background:#E8F4FD; border-color:#E8F4FD; }
+  .bant-pill.n:hover { border-color:#0077B5; }
+  .bant-pill.t { background:#FEF0F0; border-color:#FEF0F0; }
+  .bant-pill.t:hover { border-color:#E05C5C; }
+  .bant-letter { font-family:'Playfair Display',serif; font-size:24px; font-weight:900; line-height:1; margin-bottom:2px; }
+  .bant-pill.b .bant-letter { color:#2DAE5D; }
+  .bant-pill.a .bant-letter { color:#7B3FA8; }
+  .bant-pill.n .bant-letter { color:#0077B5; }
+  .bant-pill.t .bant-letter { color:#E05C5C; }
+  .bant-word { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+  .bant-pill.b .bant-word { color:#2DAE5D; }
+  .bant-pill.a .bant-word { color:#7B3FA8; }
+  .bant-pill.n .bant-word { color:#0077B5; }
+  .bant-pill.t .bant-word { color:#E05C5C; }
+  .bant-desc { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.4; }
+
+  .bant-section-label { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid var(--border); }
+  .bant-section-label h3 { font-size:17px; font-weight:700; color:var(--text); }
+  .bant-section-label p { font-size:12px; color:var(--muted); margin-top:2px; }
+  .bant-badge { font-family:'Playfair Display',serif; font-size:26px; font-weight:900; width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .bant-badge.b { background:#EAFAF2; color:#2DAE5D; }
+  .bant-badge.a { background:#F3EAFD; color:#7B3FA8; }
+  .bant-badge.n { background:#E8F4FD; color:#0077B5; }
+  .bant-badge.t { background:#FEF0F0; color:#E05C5C; }
+
+  .bant-q-grid { display:flex; flex-direction:column; gap:12px; margin-bottom:28px; }
+  .bant-q-card { background:var(--card); border:1.5px solid var(--border); border-radius:12px; overflow:hidden; transition:all 0.2s; }
+  .bant-q-card.b:hover { border-color:#2DAE5D; box-shadow:0 4px 16px rgba(45,174,93,0.1); }
+  .bant-q-card.a:hover { border-color:#7B3FA8; box-shadow:0 4px 16px rgba(123,63,168,0.1); }
+  .bant-q-card.n:hover { border-color:#0077B5; box-shadow:0 4px 16px rgba(0,119,181,0.1); }
+  .bant-q-card.t:hover { border-color:#E05C5C; box-shadow:0 4px 16px rgba(224,92,92,0.1); }
+  .bant-q-top { display:flex; align-items:flex-start; gap:12px; padding:16px 18px 12px; }
+  .bant-q-num { width:24px; height:24px; border-radius:6px; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+  .bant-q-card.b .bant-q-num { background:#EAFAF2; color:#2DAE5D; }
+  .bant-q-card.a .bant-q-num { background:#F3EAFD; color:#7B3FA8; }
+  .bant-q-card.n .bant-q-num { background:#E8F4FD; color:#0077B5; }
+  .bant-q-card.t .bant-q-num { background:#FEF0F0; color:#E05C5C; }
+  .bant-q-text { font-size:14px; font-weight:600; color:var(--text); line-height:1.5; font-style:italic; }
+  .bant-q-bottom { padding:0 18px 14px 54px; }
+  .bant-q-why { font-size:12px; color:var(--muted); line-height:1.5; }
+  .bant-q-why strong { color:var(--text); }
+  .bant-q-flag { display:inline-flex; align-items:center; gap:4px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; padding:2px 8px; border-radius:20px; margin-top:8px; }
+  .bant-q-flag.probe { background:#E8F4FD; color:#0077B5; }
+  .bant-q-flag.dig { background:#FEF0F0; color:#E05C5C; }
+  .bant-q-flag.confirm { background:#EAFAF2; color:#2DAE5D; }
+
+  .handoff-box { background:var(--card); border:2px solid var(--li-blue); border-radius:14px; overflow:hidden; }
+  .handoff-header { background:var(--li-blue); padding:14px 20px; }
+  .handoff-header h3 { color:white; font-size:14px; font-weight:700; }
+  .handoff-header p { color:rgba(255,255,255,0.75); font-size:11.5px; margin-top:2px; }
+  .handoff-body { padding:20px; }
+  .handoff-row { margin-bottom:16px; }
+  .handoff-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+  .handoff-label::before { content:''; display:block; width:3px; height:12px; border-radius:2px; background:currentColor; }
+  .handoff-label.b { color:#2DAE5D; }
+  .handoff-label.a { color:#7B3FA8; }
+  .handoff-label.n { color:#0077B5; }
+  .handoff-label.t { color:#E05C5C; }
+  .handoff-label.plain { color:var(--muted); }
+  .handoff-label.plain::before { background:var(--muted); }
+  .handoff-field { width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:8px; padding:10px 14px; font-family:'DM Sans',sans-serif; font-size:12.5px; color:var(--text); resize:vertical; min-height:60px; outline:none; transition:border-color 0.2s; line-height:1.5; }
+  .handoff-field:focus { border-color:var(--li-blue); }
+  .handoff-field::placeholder { color:#b0c0d0; font-style:italic; }
+  .copy-btn { width:100%; padding:12px; background:var(--li-blue); color:white; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:background 0.2s; margin-top:4px; }
+  .copy-btn:hover { background:var(--li-dark); }
+  .copy-btn.copied { background:#2DAE5D; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="li-logo">in</div>
+    <div style="flex:1;">
+      <div class="header-title">Talent Solutions Training Hub</div>
+      <div class="header-sub">Product &amp; Discovery Mastery for Sales Development</div>
+    </div>
+    <div style="text-align:right; flex-shrink:0;">
+      <div style="font-size:11px; font-weight:600; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px;">Made by</div>
+      <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.9); letter-spacing:0.2px;">Jalen Chanthaboury</div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('products')">🧩 Products</button>
+    <button class="tab" onclick="showTab('compare')">⚖️ Online vs Corporate</button>
+    <button class="tab" onclick="showTab('discovery')">💬 BANT Discovery</button>
+    <button class="tab" onclick="showTab('stories')">🏆 Customer Stories</button>
+    <button class="tab" onclick="showTab('stats')">📊 Stats</button>
+    <button class="tab" onclick="showTab('quiz')">🎯 Vision-Matching</button>
+  </div>
+</div>
+
+<div class="content" id="tab-products">
+  <div class="section-header">
+    <h2>LinkedIn Talent Solutions Portfolio</h2>
+    <p>Click any card to expand the full FAB breakdown. Memorize the one-liners first.</p>
+  </div>
+  <div class="product-grid" id="product-grid"></div>
+</div>
+
+<div class="content" id="tab-compare" style="display:none">
+  <div class="section-header">
+    <h2>Online vs Corporate Solutions</h2>
+    <p>Know when to upgrade a prospect from self-serve to a corporate contract. This is a key sales conversation.</p>
+  </div>
+  <div class="badge-row">
+    <button class="tier-badge active" onclick="switchCompare('jobs')">Job Posts vs Job Slots</button>
+    <button class="tier-badge" onclick="switchCompare('recruiter')">Recruiter Lite vs Recruiter Corporate</button>
+  </div>
+
+  <div id="compare-jobs">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="online">📱 Job Posts (Online)</th>
+          <th class="corp">🏢 Job Slots (Corporate)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Budgeting</td><td>Daily spend</td><td class="yes-corp">Annual contract</td></tr>
+        <tr><td>Payment method</td><td>Pay-per-click</td><td class="yes-corp">Fixed cost, one-time fee</td></tr>
+        <tr class="highlight"><td>Promotion &amp; Visibility</td><td>⚠️ Decreases as budget runs out. Goes dark once daily cap is hit</td><td class="yes-corp">✅ Always-on, 24/7 promotion. Never loses visibility</td></tr>
+        <tr><td>Post for free</td><td>1 job at a time, no promotion</td><td class="no-cell">No</td></tr>
+        <tr><td>Volume discounts</td><td class="no-cell">No</td><td class="yes-corp">✅ Built-in</td></tr>
+        <tr><td>Sync with Sourcing tools</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>See who views / engages</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Advanced candidate targeting</td><td class="no-cell">No</td><td class="yes-corp">✅ Archives non-fitting candidates</td></tr>
+        <tr><td>Multi-user shared dashboard</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Team collaboration</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Free hiring manager licenses</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>ATS integration</td><td class="no-cell">No</td><td class="yes-corp">✅ Free with select partners</td></tr>
+        <tr><td>Company data ownership</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Invoice billing</td><td>Credit card only</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Account manager support</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Admin &amp; custom reporting</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+      </tbody>
+    </table>
+    <div class="tip-box">
+      <strong>💡 Upgrade signal:</strong> When a prospect says "we post jobs but the results are inconsistent" or "we hire throughout the year". That's your opening. Job Posts burn budget and go dark. Job Slots stay visible 24/7 and give them a real hiring engine, not a one-off transaction.
+    </div>
+  </div>
+
+  <div id="compare-recruiter" style="display:none">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="online">📱 Recruiter Lite (Online)</th>
+          <th class="corp">🏢 Recruiter Corporate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight"><td>Network access</td><td>Limited to 1st, 2nd, 3rd-degree only</td><td class="yes-corp">✅ Full access to all 1B+ members</td></tr>
+        <tr><td>Total search filters</td><td>24 filters</td><td class="yes-corp">44 filters</td></tr>
+        <tr><td>"Open to Work" spotlight</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Remote work filter</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Skill assessments filter</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr class="highlight"><td>InMail messages / month</td><td>30 / month</td><td class="yes-corp">✅ 150 / month per license</td></tr>
+        <tr><td>Bulk InMailing</td><td class="no-cell">No</td><td class="yes-corp">✅ Up to 25 at a time</td></tr>
+        <tr><td>InMail pooling (team shared)</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Multi-user shared dashboard</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Team collaboration features</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Free hiring manager licenses</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>ATS integration</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Company data ownership</td><td>No. non-transferable, no collaboration</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Invoice billing</td><td>Credit card only</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Account manager support</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+        <tr><td>Admin &amp; custom reporting</td><td class="no-cell">No</td><td class="yes-corp">✅ Yes</td></tr>
+      </tbody>
+    </table>
+    <div class="tip-box">
+      <strong>💡 Upgrade signal:</strong> When a prospect has Recruiter Lite and says "we have a team of recruiters" or "we're missing candidates". Lite is individual, isolated, and capped. Corporate unlocks the full network, 5x the InMails, team collaboration, and ATS integration. Lite is a scouting tool. Corporate is a hiring machine.
+    </div>
+  </div>
+</div>
+
+<div class="content" id="tab-discovery" style="display:none">
+  <div class="section-header">
+    <h2>BANT Discovery Framework</h2>
+    <p>Run a productive discovery call. Every answer points to an opportunity.</p>
+  </div>
+
+  <div id="disc-questions">
+    <div class="bant-banner">
+      <div class="bant-pill b" onclick="scrollToSection('budget-section')">
+        <div class="bant-letter">B</div>
+        <div class="bant-word">Budget</div>
+        <div class="bant-desc">What they spend today &amp; what they're willing to invest</div>
+      </div>
+      <div class="bant-pill a" onclick="scrollToSection('authority-section')">
+        <div class="bant-letter">A</div>
+        <div class="bant-word">Authority</div>
+        <div class="bant-desc">Who decides, who influences, who can block</div>
+      </div>
+      <div class="bant-pill n" onclick="scrollToSection('need-section')">
+        <div class="bant-letter">N</div>
+        <div class="bant-word">Need</div>
+        <div class="bant-desc">The real pain and cost of inaction</div>
+      </div>
+      <div class="bant-pill t" onclick="scrollToSection('timeline-section')">
+        <div class="bant-letter">T</div>
+        <div class="bant-word">Timeline</div>
+        <div class="bant-desc">When they need to move &amp; what's driving urgency</div>
+      </div>
+    </div>
+
+    <div id="budget-section">
+      <div class="bant-section-label">
+        <div class="bant-badge b">B</div>
+        <div><h3>Budget</h3><p>Understand current spend, investment appetite, and who holds the purse strings</p></div>
+      </div>
+      <div class="bant-q-grid" id="budget-questions"></div>
+    </div>
+    <div id="authority-section">
+      <div class="bant-section-label">
+        <div class="bant-badge a">A</div>
+        <div><h3>Authority</h3><p>Map the buying committee. who champions, who signs, who can block</p></div>
+      </div>
+      <div class="bant-q-grid" id="authority-questions"></div>
+    </div>
+    <div id="need-section">
+      <div class="bant-section-label">
+        <div class="bant-badge n">N</div>
+        <div><h3>Need</h3><p>Surface the real pain, quantify the impact, make the cost of inaction tangible</p></div>
+      </div>
+      <div class="bant-q-grid" id="need-questions"></div>
+    </div>
+    <div id="timeline-section">
+      <div class="bant-section-label">
+        <div class="bant-badge t">T</div>
+        <div><h3>Timeline</h3><p>Establish urgency, uncover business drivers, understand decision speed</p></div>
+      </div>
+      <div class="bant-q-grid" id="timeline-questions"></div>
+    </div>
+  </div>
+</div>
+
+<div class="content" id="tab-stories" style="display:none">
+  <div class="section-header">
+    <h2>Customer Stories</h2>
+    <p>Real outcomes from real customers. Use these to make your conversations concrete. Pull the right story when you hear the right pain.</p>
+  </div>
+
+  <div class="stories-filter-row" id="stories-filter-row"></div>
+  <div class="stories-grid" id="stories-grid"></div>
+</div>
+
+<div class="content" id="tab-stats" style="display:none">
+  <div class="section-header">
+    <h2>Approved Stats for Customer Conversations</h2>
+    <p>January 2026 globally approved stats. Use these confidently in calls, emails, and demos.</p>
+  </div>
+  <div id="stats-container"></div>
+</div>
+
+<div class="content" id="tab-quiz" style="display:none">
+  <div class="section-header">
+    <h2>Vision Match</h2>
+    <p>Practice mapping customer pain to LinkedIn solutions. Build the closing summary that sets up your AE like a pro.</p>
+  </div>
+  <div id="vm-container"></div>
+</div>
+
+<script>
+const products = [
+  {
+    id: 'recruiter',
+    name: 'LinkedIn Recruiter',
+    tagline: 'Corporate sourcing & outreach powerhouse',
+    anchor: 'Find and engage passive talent at scale',
+    icon: '🔍',
+    color: '#0077B5',
+    bg: '#E8F4FD',
+    pains: ['Critical roles staying open too long', 'Over-reliance on expensive staffing agencies', 'No proactive talent pipeline for future roles'],
+    features: ['Full access to 1B+ members', '44+ advanced filters + Boolean search', '150 InMails/month with bulk messaging', 'ATS integration & analytics', 'AI-powered candidate recommendations'],
+    advantages: ['Discover passive candidates worldwide', 'Save time with bulk outreach & templates', 'Align teams via shared projects & notes', 'Track team activity & hiring KPIs', 'Move from insight to action with Talent Insights'],
+    benefits: ['Fill roles faster & reduce time-to-hire', 'Improve recruiter efficiency', 'Reach better-quality talent', 'Scale sourcing for multiple roles at once', 'Stronger hiring outcomes = competitive edge'],
+    discovery: '"What is it costing the business when that role sits open?"'
+  },
+  {
+    id: 'jobslots',
+    name: 'Job Slots',
+    tagline: 'Always-on job posting for consistent hiring',
+    anchor: 'Always-on hiring visibility',
+    icon: '📌',
+    color: '#7B3FA8',
+    bg: '#F3EAFD',
+    pains: ['Too many unqualified applicants', 'Jobs not reaching the right candidates', 'Hiring process is disorganized across the team'],
+    features: ['Actively promotes jobs to relevant LinkedIn members', 'Advanced candidate management and filtering tools', 'Full integration with LinkedIn Recruiter', 'Team collaboration across multiple teammates', 'ATS integration via Job Wrapping'],
+    advantages: ['83% of posted jobs get a qualified candidate within 24 hours', '6x more apply clicks in the first 7 days vs unpromoted posts', 'Jobs shown to the most qualified members via LinkedIn\'s algorithm', 'Centralized pipeline with full team visibility', '65M+ job seekers visit LinkedIn Jobs every week'],
+    benefits: ['Attract qualified candidates and reduce unfit applicants', 'Identify and connect with the best applicants faster', 'Predictable annual cost vs unpredictable pay-per-click', 'Full team collaboration on candidate pipeline', 'Seamless workflow with Recruiter and your ATS'],
+    discovery: '"How much time is your team losing reviewing candidates who aren\'t even close to qualified?"'
+  },
+  {
+    id: 'careerpages',
+    name: 'Career Pages',
+    tagline: 'Employer branding that converts',
+    anchor: 'Showcase culture, attract the right talent',
+    icon: '🏡',
+    color: '#2DAE5D',
+    bg: '#EAFAF2',
+    pains: ['Low apply rates', 'Weak employer brand', 'Can\'t compete against bigger brands'],
+    features: ['Custom "Life" page with video, photos, testimonials', 'Audience targeting by role, function, location', '"I\'m Interested" button builds a talent pool', 'Integrated job listings & analytics', 'Personalized brand experience by audience'],
+    advantages: ['Reach talent before they apply', '8x more applications vs no Career Page', 'Candidates trust employee voices', 'Easy to update and promote', 'Capture interest even when not actively hiring'],
+    benefits: ['Attract better-fit candidates who align with culture', 'Recruiters get warmer leads & higher response rates', 'Build long-term talent pipeline', 'Stronger brand = lower cost per hire over time', 'Compete with larger brands on equal footing'],
+    discovery: '"What do candidates see when they look your company up before deciding whether to apply?"'
+  },
+  {
+    id: 'hiringassistant',
+    name: 'Hiring Assistant (LIHA)',
+    tagline: 'AI that does the sourcing grunt work',
+    anchor: 'AI that saves recruiter time on sourcing',
+    icon: '🤖',
+    color: '#E05C5C',
+    bg: '#FEF0F0',
+    pains: ['Recruiter burnout', 'Too much time sourcing vs engaging', 'Missed candidate profiles'],
+    features: ['AI agent inside LinkedIn Recruiter', 'Surfaces better candidates automatically', 'Learns from recruiter behavior over time', 'Powered by LinkedIn network data', 'Reduces manual sourcing tasks'],
+    advantages: ['Surfaces overlooked candidates', 'Continuously improves with use', 'Trained on LinkedIn network data', 'Frees recruiters for human-led tasks', 'Works best on high req loads'],
+    benefits: ['Less time searching, more time engaging', 'Better candidate quality without more effort', 'Lean TA teams can do more with less', 'Reduce time-to-fill on hard roles', 'Recruiter satisfaction improves'],
+    discovery: '"If your recruiters spent less time searching and more time closing, what would that mean for your pipeline?"'
+  },
+  {
+    id: 'hiringpro',
+    name: 'Hiring Pro',
+    tagline: 'AI hiring agent for SMBs',
+    anchor: 'AI-guided hiring for small businesses',
+    icon: '🚀',
+    color: '#F5A623',
+    bg: '#FFF8EC',
+    pains: ['No dedicated recruiter', 'Hiring feels overwhelming', 'Limited time and budget'],
+    features: ['AI hiring agent built for non-recruiters', 'Simple, guided hiring experience', 'Built for under 200 employee companies', 'AI handles the heavy lifting', 'No recruiting expertise required'],
+    advantages: ['Hiring manager can run the process', 'Affordable vs hiring an agency', 'AI surfaces relevant candidates', 'Guided step-by-step workflow', 'Designed for 1 to 10 hires per year'],
+    benefits: ['Hire faster without a dedicated recruiter', 'Save money vs agency fees', 'Reduce overwhelm in the hiring process', 'Better candidate quality for small teams', 'Free up founder/manager time'],
+    discovery: '"How much of the business is slowing down because the people doing the hiring aren\'t recruiters?"'
+  },
+  {
+    id: 'learning',
+    name: 'LinkedIn Learning',
+    tagline: 'Upskilling that drives retention',
+    anchor: 'Upskill and retain your talent',
+    icon: '📚',
+    color: '#00A0DC',
+    bg: '#E5F6FD',
+    pains: ['Skill gaps in existing workforce', 'High attrition & turnover', 'Limited internal mobility'],
+    features: ['Business, tech, and leadership courses', 'Personalized learning paths', 'Tied to LinkedIn in-demand skills data', 'Tracks completion and engagement', 'Content from industry experts'],
+    advantages: ['Skills aligned to what employers need now', 'Personalized by role and career goal', 'Supports internal mobility goals', 'Complements hiring by developing what you have', 'Visible to employees as career investment'],
+    benefits: ['Close skill gaps without hiring externally', 'Reduce attrition. Employees feel invested in', 'Build internal mobility pipeline', 'Show employees a future at the company', 'Lower recruiting costs long-term'],
+    discovery: '"What is it costing you when a top performer leaves because they stopped seeing a future here?"'
+  },
+  {
+    id: 'insights',
+    name: 'LinkedIn Talent Insights',
+    tagline: 'Real-time talent market intelligence',
+    anchor: 'Data-driven hiring and workforce decisions',
+    icon: '📊',
+    color: '#004471',
+    bg: '#E0EEF7',
+    pains: ['Hiring decisions based on gut, not data', 'Struggling to locate talent for new markets', 'DEI strategies not backed by data'],
+    features: ['Talent market data on roles, skills, companies, locations', 'Company, school & diversity reports', 'Skills gap & workforce analysis', 'Real-time exportable dashboards', 'Links directly to LinkedIn Recruiter'],
+    advantages: ['Real-time view of talent supply and demand', 'Benchmark competitors and market trends', 'Spot hard-to-hire roles early', 'Supports data-driven decisions', 'Move from insights to action quickly'],
+    benefits: ['Avoid costly hiring mistakes & delays', 'Align TA plans with business goals', 'Support DEI, location & campus strategies with data', 'Recruiters advise managers with confidence', 'Improve hiring quality with better planning'],
+    discovery: '"How much has a bad hiring decision cost the business in the last 12 months?"'
+  }
+];
+
+const discoveryQuestions = [
+  { product: 'LinkedIn Recruiter', q: 'How are you finding candidates who aren\'t actively applying today?', why: 'Surfaces passive talent pain. the core value prop of Recruiter.' },
+  { product: 'LinkedIn Recruiter', q: 'Are your recruiters spending too long waiting on applicants, especially for hard-to-fill roles?', why: 'Signals reactive hiring. Recruiter lets you go proactive.' },
+  { product: 'Job Slots', q: 'How often do your open roles change month to month?', why: 'Frequent role changes = Job Slots flexibility wins over per-post fees.' },
+  { product: 'Job Slots', q: 'What happens to your job visibility when your daily posting budget runs out?', why: 'Exposes the pay-per-click vulnerability. Job Slots never goes dark.' },
+  { product: 'Career Pages', q: 'What story do candidates see about your company before they apply?', why: 'Opens the employer brand conversation. if the answer is "not much," that\'s the gap.' },
+  { product: 'Career Pages', q: 'Do you have a way to capture interest from people who aren\'t ready to apply yet?', why: 'The "I\'m Interested" button builds passive talent pools. a key differentiator.' },
+  { product: 'Hiring Assistant', q: 'How much of your recruiters\' time is spent searching vs actually engaging candidates?', why: 'If searching dominates, LIHA flips that ratio. more time on humans, less on admin.' },
+  { product: 'Talent Insights', q: 'How do you decide where and how to hire talent. is it based on real-time data?', why: 'Most companies answer "gut/experience." That\'s the Insights opening.' },
+  { product: 'Talent Insights', q: 'Would it help to know how many qualified candidates exist before launching a search?', why: 'Reframes hiring planning from reactive to strategic. Insights\' core use case.' },
+  { product: 'Hiring Pro', q: 'Who owns hiring today. is there a dedicated recruiter, or hiring managers wearing multiple hats?', why: 'No dedicated recruiter = Hiring Pro. They need an AI agent, not an enterprise tool.' },
+  { product: 'LinkedIn Learning', q: 'How are you developing talent after you hire them?', why: 'The post-hire question that opens Learning. Most companies have no real answer.' },
+  { product: 'LinkedIn Learning', q: 'How are you making sure your best people see a future at your company?', why: 'Career development = retention. Learning is the ROI on keeping great talent.' },
+];
+
+// ─── VISION MATCH GAME ───────────────────────────────────────────────────────
+
+const vmScenarios = [
+  {
+    company: 'Meridian Health',
+    industry: 'Healthcare / 800 employees',
+    persona: 'VP of Talent Acquisition',
+    quote: '"We have 14 clinical roles that have been open for over 4 months. We keep getting flooded with applications from people who are not even close to qualified. Our agency spend is through the roof and we need these roles filled before Q3 or we cannot open our new clinic."',
+    stages: [
+      {
+        type: 'multi',
+        required: 2,
+        label: 'Stage 1: Identify the Pain and Business Consequence',
+        prompt: 'Select exactly 2 items: the primary pain the customer stated AND the downstream business consequence.',
+        options: [
+          { text: 'Recruiters are spending too many hours reviewing applications each day', correct: false, why: 'Adjacent but not directly stated. The customer named applicant quality and agency spend, not recruiter hours.' },
+          { text: '14 clinical roles have been open for 4 months with unqualified applicants flooding the pipeline', correct: true, why: 'Correct. This is the stated pain, with the quantification the customer gave you.' },
+          { text: 'The recruiting budget is undersized relative to the volume of hiring required', correct: false, why: 'Not stated. The customer mentioned agency spend but not a budget constraint.' },
+          { text: 'A planned clinic opening is directly at risk if the roles are not filled by Q3', correct: true, why: 'Correct. This is the explicit business consequence the customer named.' },
+          { text: 'Agency fees are making hiring more expensive than the company planned for', correct: false, why: 'A symptom, not the consequence. The clinic opening is the real stake.' },
+          { text: 'The team lacks tools to proactively source passive talent', correct: false, why: 'An assumption you are making, not something the customer stated.' }
+        ]
+      },
+      {
+        type: 'single',
+        label: 'Stage 2: Spot the Flaw',
+        prompt: 'A rep sent this vision match summary after the call. Identify the most critical flaw.',
+        draft: '"I hear you on the open roles. We have a great network of over a billion professionals and our tools have advanced filters that can help you find better candidates quickly. I would love to set up a 30-minute demo to show you how it works."',
+        options: [
+          { text: 'The draft normalizes the pain instead of treating it as urgent and specific to this customer', correct: false, why: 'Close, but the bigger structural flaw comes first.' },
+          { text: 'The draft leads with product features before connecting them to the business consequence the customer named', correct: true, why: 'Correct. The draft jumps straight to network size and filters without acknowledging the clinic opening or the 4-month timeline. Features before stakes is the cardinal sin of vision matching.' },
+          { text: 'The draft does not reference the exact number of open roles', correct: false, why: 'A minor detail gap, not the most damaging flaw in this draft.' },
+          { text: 'The CTA is too short for the scale of this opportunity', correct: false, why: 'The CTA format is not the problem here. The sequencing of pain before product is.' }
+        ]
+      },
+      {
+        type: 'build',
+        required: 3,
+        label: 'Stage 3: Build the Close',
+        prompt: 'Select exactly 3 fragments that together form the strongest Vision Match close for this customer.',
+        options: [
+          { text: 'Fourteen clinical roles sitting open for 4 months, with a clinic launch at risk, is not just a recruiting problem. It is a business risk that grows every week.', correct: true, why: 'Opens by anchoring the business stakes using the customer\'s exact situation and numbers.' },
+          { text: 'LinkedIn Talent Solutions gives your team proactive access to passive clinical talent that will never show up on a job board or agency list.', correct: true, why: 'Maps the solution to the specific gap without feature-dumping.' },
+          { text: 'Given your Q3 deadline, I want to get you in front of one of our healthcare consultants this week to show you how similar teams have closed roles like these in weeks, not months.', correct: true, why: 'Creates urgency tied to their real deadline and positions the next call as strategic.' },
+          { text: 'Our platform is trusted by 95% of Fortune 100 companies and has a proven track record across industries.', correct: false, why: 'Stat dump with no connection to their specific consequence. Sounds like a pitch, not a consultation.' },
+          { text: 'I completely understand how challenging this must be for your team right now.', correct: false, why: 'Empathy without business weight. It softens the conversation instead of sharpening it.' },
+          { text: 'We can put together a customized proposal based on your seat count and hiring volume.', correct: false, why: 'Jumps to pricing before establishing value. Way too early.' }
+        ]
+      }
+    ],
+    goldStandard: '"Fourteen clinical roles sitting open for 4 months, with a Q3 clinic launch on the line, is a business risk. Every week these roles stay unfilled, that risk compounds. LinkedIn Talent Solutions gives your team direct access to passive clinical talent that will never appear on a job board or agency list. Given your deadline, I want to get you in front of one of our healthcare consultants this week so you can see exactly how teams in your position have filled roles like these in weeks, not months."'
+  },
+  {
+    company: 'Apex Engineering',
+    industry: 'Engineering / 2,200 employees',
+    persona: 'Director of Talent Acquisition',
+    quote: '"Our recruiters are spending most of their day just searching. Building lists, reviewing profiles, sending outreach. By the time they actually get to talk to a candidate, half the day is gone. We are a team of 6 trying to fill 80 open reqs and it is not sustainable."',
+    stages: [
+      {
+        type: 'multi',
+        required: 2,
+        label: 'Stage 1: Identify the Pain and Business Consequence',
+        prompt: 'Select exactly 2 items: the primary pain the customer stated AND the downstream business consequence.',
+        options: [
+          { text: 'A team of 6 recruiters is carrying 80 open reqs with sourcing consuming most of their day', correct: true, why: 'Correct. This is the stated pain with the exact numbers the customer gave you.' },
+          { text: 'The company needs to invest in more recruiting headcount to match the req volume', correct: false, why: 'A potential solution, not the pain. Do not diagnose a cure before the rep has finished mapping the problem.' },
+          { text: 'Recruiting tools are too complex for the team to use efficiently', correct: false, why: 'Not stated. The customer described a time allocation problem, not a tool complexity problem.' },
+          { text: 'Pipeline velocity is stalling because recruiters spend the day sourcing instead of having candidate conversations', correct: true, why: 'Correct. This is the downstream business consequence: the pipeline is not moving because the time is not there.' },
+          { text: 'Hiring managers are frustrated by how long it takes to fill roles', correct: false, why: 'Plausible but not stated. Do not invent stakeholder pain that was not shared.' },
+          { text: 'Job postings are not generating enough inbound applicant volume', correct: false, why: 'Not stated. This is a sourcing efficiency problem, not a posting problem.' }
+        ]
+      },
+      {
+        type: 'single',
+        label: 'Stage 2: Spot the Flaw',
+        prompt: 'A rep sent this vision match summary after the call. Identify the most critical flaw.',
+        draft: '"It sounds like your team is working really hard and the workload is tough. We work with a lot of engineering companies and I think our solution could really help. It has AI features that save time on sourcing. Would you be open to a demo next week?"',
+        options: [
+          { text: 'The draft fails to use any of the specific numbers the customer provided', correct: true, why: 'Correct. The customer gave you 6 recruiters and 80 reqs. A strong vision match plays those numbers back. Ignoring them makes the summary feel generic and proves you were not listening.' },
+          { text: 'The draft should have started by asking additional discovery questions', correct: false, why: 'This is a post-call closing summary, not a discovery moment. The goal here is to reflect and close.' },
+          { text: 'The draft is too brief and should include more detail about the product', correct: false, why: 'More product detail is not the fix. The fix is specificity about the customer\'s situation.' },
+          { text: 'The CTA should have named a specific time rather than asking if they are open to a demo', correct: false, why: 'The CTA could be sharper, but the bigger structural failure is losing the customer\'s own data.' }
+        ]
+      },
+      {
+        type: 'build',
+        required: 3,
+        label: 'Stage 3: Build the Close',
+        prompt: 'Select exactly 3 fragments that together form the strongest Vision Match close for this customer.',
+        options: [
+          { text: 'Six recruiters carrying 80 open reqs, with most of the day going to sourcing rather than candidate conversations. That ratio is what is stalling your pipeline.', correct: true, why: 'Uses the customer\'s numbers, names the consequence, and avoids leading with product.' },
+          { text: 'LinkedIn Talent Solutions automates the sourcing work and delivers a curated shortlist, so your team shifts from building queues to closing candidates.', correct: true, why: 'Maps the solution to the specific problem without feature-dumping.' },
+          { text: 'Across 80 reqs, reclaiming even an hour per role per recruiter changes the entire output of your team. I want to get you in front of someone who can walk you through exactly what that looks like this week.', correct: true, why: 'Quantifies the impact using their own volume and creates specific urgency for the next step.' },
+          { text: 'We have helped many engineering companies with similar challenges and have great case studies to share.', correct: false, why: 'Vague social proof with no connection to their specific numbers or consequence.' },
+          { text: 'I can put together a comparison of our platform versus your current tools and send it over.', correct: false, why: 'Passive handoff that removes you from the next conversation entirely.' },
+          { text: 'Our AI technology is really cutting edge and keeps improving over time.', correct: false, why: 'Product-first with no tie to their pain. This is the exact opposite of a vision match.' }
+        ]
+      }
+    ],
+    goldStandard: '"Six recruiters carrying 80 open reqs, with most of the day going to sourcing rather than actual candidate conversations. That ratio is what is stalling your pipeline. LinkedIn Talent Solutions automates the sourcing work and delivers a curated shortlist, so your team shifts from building queues to closing candidates. Across 80 reqs, reclaiming even an hour per role per recruiter changes the entire output of your team. I want to get you in front of one of our consultants who can show you exactly what that looks like. Let us get something on the calendar this week."'
+  },
+  {
+    company: 'Novara Consumer Brands',
+    industry: 'Retail / 3,500 employees',
+    persona: 'HR Director',
+    quote: '"We post jobs on LinkedIn but the quality of candidates is really inconsistent. And honestly we do not even know if the right people are seeing them. Our team is just reviewing application after application and most of them are not even close. We are wasting so much time."',
+    stages: [
+      {
+        type: 'multi',
+        required: 2,
+        label: 'Stage 1: Identify the Pain and Business Consequence',
+        prompt: 'Select exactly 2 items: the primary pain the customer stated AND the downstream business consequence.',
+        options: [
+          { text: 'Job postings are not reaching the most qualified candidates, generating a low-quality applicant pool', correct: true, why: 'Correct. The customer directly said they do not know if the right people are seeing the postings and quality is inconsistent.' },
+          { text: 'The job descriptions are not compelling enough to attract strong candidates', correct: false, why: 'An assumption. The customer said the postings are not reaching the right people, not that the writing is the problem.' },
+          { text: 'Recruiting team bandwidth is being consumed by reviewing irrelevant applications instead of moving qualified candidates forward', correct: true, why: 'Correct. The customer explicitly said their team is wasting time reviewing application after application.' },
+          { text: 'The LinkedIn algorithm is not working correctly for their industry and role types', correct: false, why: 'A speculation, not a stated fact. Do not introduce technical blame that the customer did not raise.' },
+          { text: 'Hiring managers are setting unrealistic requirements that reduce the qualified applicant pool', correct: false, why: 'Not stated. Do not import new problems into the vision match.' },
+          { text: 'The company is posting too many roles simultaneously for the team to manage effectively', correct: false, why: 'Not stated. Volume management was not mentioned as a concern.' }
+        ]
+      },
+      {
+        type: 'single',
+        label: 'Stage 2: Spot the Flaw',
+        prompt: 'A rep sent this vision match summary after the call. Identify the most critical flaw.',
+        draft: '"A lot of companies struggle with applicant quality on job boards. It is a really common challenge in retail especially. We have tools that can help you get better visibility and filter out the noise. Happy to walk you through it."',
+        options: [
+          { text: 'The draft should have asked about the company\'s budget before offering a solution', correct: false, why: 'Budget discovery belongs in the discovery call. A vision match summary is not the moment for that.' },
+          { text: 'The draft normalizes the pain as a common industry issue, which removes the urgency and makes it feel unsolvable', correct: true, why: 'Correct. Opening with "a lot of companies struggle" signals to the customer that this is normal and to be expected, which kills urgency entirely. The problem should feel specific and solvable, not generic and inevitable.' },
+          { text: 'The draft is too informal in tone for a B2B sales conversation', correct: false, why: 'Tone is not the core issue. The structural problem of normalizing pain is far more damaging.' },
+          { text: 'The draft should have included specific product features to make it more credible', correct: false, why: 'More features do not fix this draft. The foundation is broken: it makes the customer feel normal instead of understood.' }
+        ]
+      },
+      {
+        type: 'build',
+        required: 3,
+        label: 'Stage 3: Build the Close',
+        prompt: 'Select exactly 3 fragments that together form the strongest Vision Match close for this customer.',
+        options: [
+          { text: 'When postings are not reaching the right candidates, the team pays twice: once in wasted review time, and again in roles that stay open longer than they should.', correct: true, why: 'Names the double cost without normalizing it. Specific and urgent.' },
+          { text: 'LinkedIn Talent Solutions actively promotes your roles to the most qualified and relevant candidates, so the applicant pool is filtered before it ever reaches your team.', correct: true, why: 'Maps the solution directly to the stated pain without listing features.' },
+          { text: '83% of promoted roles on LinkedIn get a qualified candidate within 24 hours. I want to get you in front of someone who can show you what that looks like at your scale.', correct: true, why: 'Drops a credible stat tied to their exact pain point and creates a specific next step.' },
+          { text: 'We could look at rewriting your job descriptions to attract a stronger candidate pool.', correct: false, why: 'Implies the problem is their content, not the targeting. This pivots blame and deflects from the solution.' },
+          { text: 'I will put together some information and send it over for you and your team to review.', correct: false, why: 'Passive with no urgency. Sends them off to self-serve and removes you from the loop.' },
+          { text: 'Our platform is really intuitive and most teams are up and running quickly without much training.', correct: false, why: 'Ease of use is not what this customer cares about. Irrelevant to the stated pain.' }
+        ]
+      }
+    ],
+    goldStandard: '"When postings are not reaching the right candidates, your team pays twice: once in wasted review time, and again in roles that stay open longer than they should. That is what is happening here. LinkedIn Talent Solutions actively promotes your roles to the most qualified and relevant candidates, so the applicant pool is filtered before it reaches your team. 83% of promoted roles on LinkedIn get a qualified candidate within 24 hours. I want to get you in front of someone who can show you what that looks like at your scale. Let us make that happen this week."'
+  },
+  {
+    company: 'Brightfield Technologies',
+    industry: 'SaaS / 420 employees',
+    persona: 'Co-Founder and COO',
+    quote: '"I am the one handling hiring right now. I do not have a recruiter. Every time we need to hire someone, it takes weeks just to get through the process and I am doing it on top of everything else. We need to hire 8 people this year and I genuinely do not know how I am going to do it."',
+    stages: [
+      {
+        type: 'multi',
+        required: 2,
+        label: 'Stage 1: Identify the Pain and Business Consequence',
+        prompt: 'Select exactly 2 items: the primary pain the customer stated AND the downstream business consequence.',
+        options: [
+          { text: 'The person responsible for hiring also runs the business, making the process slow and draining leadership bandwidth', correct: true, why: 'Correct. This is the stated pain: no recruiter, doing it on top of everything else.' },
+          { text: 'The company cannot attract strong candidates because it lacks employer brand presence', correct: false, why: 'Not stated. Brand was never raised as a concern.' },
+          { text: 'Eight hires across the year with no dedicated recruiter means leadership bandwidth will be repeatedly pulled from the business every time a role opens', correct: true, why: 'Correct. The downstream consequence is compounded leadership distraction across a full year of hiring.' },
+          { text: 'The company cannot afford to pay competitive salaries to attract top talent', correct: false, why: 'Compensation was not mentioned. Do not import assumptions.' },
+          { text: 'Current job postings are not generating enough inbound applicant volume', correct: false, why: 'Not stated. The problem is process time and bandwidth, not application volume.' },
+          { text: 'The company is growing too fast for its current operational structure', correct: false, why: 'An inference, not a stated pain. Stick to what the customer told you.' }
+        ]
+      },
+      {
+        type: 'single',
+        label: 'Stage 2: Spot the Flaw',
+        prompt: 'A rep sent this vision match summary after the call. Identify the most critical flaw.',
+        draft: '"You should definitely think about hiring an in-house recruiter once you grow a bit more. In the meantime, our platform is easy to use and designed for people without a recruiting background. It would make the process a lot smoother for you."',
+        options: [
+          { text: 'The draft does not reference any proof points or statistics', correct: false, why: 'Stats would strengthen it, but a missing stat is not the most damaging issue in this draft.' },
+          { text: 'The draft actively suggests an alternative solution that competes with the product being sold, which undermines urgency and value', correct: true, why: 'Correct. Recommending the customer hire a recruiter is the worst possible move here. It positions your product as a temporary workaround rather than the real answer, and signals you do not fully believe in your own solution.' },
+          { text: 'The draft\'s tone is too casual for a business development conversation', correct: false, why: 'Tone is not the critical problem. The structural error is positioning a competitor solution first.' },
+          { text: 'The draft should have asked about the customer\'s timeline before offering any recommendations', correct: false, why: 'Timeline discovery should already be done. This is a closing summary, not an open question.' }
+        ]
+      },
+      {
+        type: 'build',
+        required: 3,
+        label: 'Stage 3: Build the Close',
+        prompt: 'Select exactly 3 fragments that together form the strongest Vision Match close for this customer.',
+        options: [
+          { text: 'Eight hires across the year, with no dedicated recruiter, means the business loses leadership bandwidth every single time a role opens.', correct: true, why: 'Uses the customer\'s number and frames the consequence as a recurring, compounding problem.' },
+          { text: 'LinkedIn Talent Solutions is built for exactly this situation: an AI-guided hiring process that does not require recruiting expertise, so you make great hires without it taking over your calendar.', correct: true, why: 'Maps directly to the stated situation. No recruiter needed. Process-light.' },
+          { text: 'Nearly 60% of users find a candidate to interview in their first week. I want to get you in front of someone who works with founders in your position so you can see how this fits into your year.', correct: true, why: 'Credible stat, specific audience match, and a forward-looking CTA tied to their planning horizon.' },
+          { text: 'Our platform has thousands of active job seekers checking it every day.', correct: false, why: 'Volume stat with no connection to the actual pain: process time and leadership bandwidth.' },
+          { text: 'Once you grow a bit more you could also upgrade to a more powerful enterprise solution down the road.', correct: false, why: 'Undermines the current value and positions this as a compromise. Never do this.' },
+          { text: 'I can put together a pricing proposal for you to review with your finance team.', correct: false, why: 'Far too early. You have not established enough value for a pricing conversation.' }
+        ]
+      }
+    ],
+    goldStandard: '"Eight hires across the year, with no dedicated recruiter, means the business loses leadership bandwidth every single time a role opens. That is the real cost here. LinkedIn Talent Solutions is built for exactly this situation: an AI-guided hiring process that does not require recruiting expertise, so you make great hires without it taking over your calendar. Nearly 60% of users find a candidate to interview in their first week. I want to get you in front of someone who works with founders in your position so you can see how this fits into your year. Can we find 30 minutes this week?"'
+  },
+  {
+    company: 'Crestwood Capital',
+    industry: 'Financial Services / 600 employees',
+    persona: 'CHRO',
+    quote: '"We are losing analysts and associates at a rate I have not seen before. We do exit interviews and the consistent theme is that people do not feel like they are growing. They like the company but they do not see a path forward. It is becoming expensive. Every time someone leaves we have to go back to market."',
+    stages: [
+      {
+        type: 'multi',
+        required: 2,
+        label: 'Stage 1: Identify the Pain and Business Consequence',
+        prompt: 'Select exactly 2 items: the primary pain the customer stated AND the downstream business consequence.',
+        options: [
+          { text: 'Employees consistently report leaving because they do not see career growth opportunities at the company', correct: true, why: 'Correct. This is the stated root cause, drawn directly from the exit interviews the customer referenced.' },
+          { text: 'Compensation packages are not competitive enough to retain top performers in financial services', correct: false, why: 'The customer explicitly said people like the company. Compensation was not raised as the issue.' },
+          { text: 'Repeated attrition is creating ongoing recruiting costs and productivity gaps that compound each time someone leaves', correct: true, why: 'Correct. The customer said "it is becoming expensive" and that they have to go back to market every time someone exits.' },
+          { text: 'The company culture is creating friction that makes employees feel disconnected', correct: false, why: 'Not stated. The customer said people like the company. Do not introduce a diagnosis that was not shared.' },
+          { text: 'Managers are not having regular career conversations with their direct reports', correct: false, why: 'An inference. The customer described the symptom from exit data but did not name manager behavior as the cause.' },
+          { text: 'The company is hiring people who are not the right fit from the start', correct: false, why: 'Not stated. Attrition at 18 months suggests onboarding or development failure, not a bad hire problem.' }
+        ]
+      },
+      {
+        type: 'single',
+        label: 'Stage 2: Spot the Flaw',
+        prompt: 'A rep sent this vision match summary after the call. Identify the most critical flaw.',
+        draft: '"Attrition is tough, especially in financial services right now. We work with a lot of firms in your space and it is a really common challenge. Our learning platform has thousands of courses that employees can use on their own time to develop new skills. It might be worth checking out."',
+        options: [
+          { text: 'The draft should have asked about the L&D budget before recommending a solution', correct: false, why: 'Budget conversation belongs in discovery. A vision match summary is not the place to open that question.' },
+          { text: 'The draft normalizes the attrition problem as an industry-wide issue, which removes urgency and makes the problem feel inevitable rather than solvable', correct: true, why: 'Correct. Starting with "attrition is tough in financial services" signals that this is expected and normal. That is the fastest way to kill urgency. The pain needs to feel specific to them and solvable by you.' },
+          { text: 'The draft is too brief and should include more product depth to be credible', correct: false, why: 'More product detail does not fix a draft that has already normalized the pain away.' },
+          { text: 'The draft mentions courses but should have also referenced specific learning paths', correct: false, why: 'Feature-level detail is not the flaw here. The foundation is broken before we get to features.' }
+        ]
+      },
+      {
+        type: 'build',
+        required: 3,
+        label: 'Stage 3: Build the Close',
+        prompt: 'Select exactly 3 fragments that together form the strongest Vision Match close for this customer.',
+        options: [
+          { text: 'When exit interviews consistently point to the same root cause, that is not an attrition problem. It is a retention strategy failure, and every quarter you do not address it the cost compounds.', correct: true, why: 'Reframes the problem as strategic and urgent without normalizing it.' },
+          { text: 'LinkedIn Talent Solutions gives employees personalized development paths tied to real career progression, making internal growth visible and concrete so people see a future before they start looking elsewhere.', correct: true, why: 'Maps the solution directly to the customer\'s stated driver of attrition.' },
+          { text: 'Organizations using this platform develop skills at 3.4 times the rate of those without it. I want to connect you with someone who has worked with financial services teams on exactly this challenge before another quarter passes.', correct: true, why: 'Drops a relevant stat, ties urgency to the customer\'s timeline, and positions the next call as specialized.' },
+          { text: 'We could also help you with recruiting to backfill the people who are leaving in the meantime.', correct: false, why: 'Treats the symptom instead of the cause and splits focus. This customer needs to stop the bleeding, not refill the bucket faster.' },
+          { text: 'I can send you our full course library so you can see if the content matches what your team needs.', correct: false, why: 'Passive content drop that removes urgency and takes you out of the conversation.' },
+          { text: 'Employee development is something a lot of companies are investing in right now across the industry.', correct: false, why: 'Normalizes again. Any phrase that sounds like "everyone is doing this" undercuts the urgency you just built.' }
+        ]
+      }
+    ],
+    goldStandard: '"When exit interviews consistently point to the same root cause, that is not an attrition problem. It is a retention strategy failure, and every quarter you do not address it, the cost compounds. LinkedIn Talent Solutions gives employees personalized development paths tied to real career progression, making internal growth visible so people see a future before they start looking elsewhere. Organizations using this platform develop skills at 3.4 times the rate of those without it. I want to connect you with someone who has worked with financial services teams on this exact challenge before another quarter goes by."'
+  },
+  {
+    company: 'Vertus Construction',
+    industry: 'Construction / 1,100 employees',
+    persona: 'VP of People and Culture',
+    quote: '"We are planning to expand into three new markets next year. Denver, Austin, and Phoenix. We have no idea if the talent is actually there for the roles we need. We have been burned before making commitments to open offices and then struggling to hire. I need to know before we sign leases."',
+    stages: [
+      {
+        type: 'multi',
+        required: 2,
+        label: 'Stage 1: Identify the Pain and Business Consequence',
+        prompt: 'Select exactly 2 items: the primary pain the customer stated AND the downstream business consequence.',
+        options: [
+          { text: 'The company is planning a three-market expansion without data to validate whether the talent supply exists in those locations', correct: true, why: 'Correct. This is the stated pain: the company is about to make a major commitment with no market intelligence.' },
+          { text: 'The company does not have a strong enough employer brand to attract talent in new markets', correct: false, why: 'Not stated. Brand was not raised as a concern. Do not create problems that were not shared.' },
+          { text: 'Without talent market intelligence, the company risks repeating a prior experience of committing to office leases and then failing to hire into them', correct: true, why: 'Correct. The customer explicitly named this as a past failure and stated the goal of avoiding a repeat.' },
+          { text: 'The company is growing too quickly without proper financial planning in place', correct: false, why: 'Not stated and not your place to assert. Stick to what the customer told you.' },
+          { text: 'Recruiting teams in new markets do not have enough experience sourcing locally', correct: false, why: 'An assumption. Local team capability was not discussed.' },
+          { text: 'Job postings in new markets are not generating sufficient applicant volume', correct: false, why: 'They have not started hiring yet. This is a pre-commitment planning problem, not a posting problem.' }
+        ]
+      },
+      {
+        type: 'single',
+        label: 'Stage 2: Spot the Flaw',
+        prompt: 'A rep sent this vision match summary after the call. Identify the most critical flaw.',
+        draft: '"Expansion is always uncertain and it can be hard to predict how hiring will go in a new market. We have tools that can give you some market data and help you understand the talent landscape. I would be happy to connect you with our team to explore what that might look like."',
+        options: [
+          { text: 'The draft should have named each of the three markets the customer mentioned', correct: false, why: 'Naming the markets would strengthen it, but that is not the most critical structural flaw.' },
+          { text: 'The draft opens by framing the risk as inevitable and uncertain, which validates the fear instead of positioning the solution as the way to remove it', correct: true, why: 'Correct. Leading with "expansion is always uncertain" tells the customer that their concern is valid and nothing can fully fix it. That is the opposite of what a vision match should do. The solution should be positioned as the thing that replaces uncertainty with data.' },
+          { text: 'The draft does not include any statistics or proof points to build credibility', correct: false, why: 'Stats would help, but the opening framing is the more critical structural flaw to fix first.' },
+          { text: 'The CTA is too vague and should have proposed a specific date and time', correct: false, why: 'The CTA could be sharper, but fixing it does not fix the foundational problem of normalizing uncertainty.' }
+        ]
+      },
+      {
+        type: 'build',
+        required: 3,
+        label: 'Stage 3: Build the Close',
+        prompt: 'Select exactly 3 fragments that together form the strongest Vision Match close for this customer.',
+        options: [
+          { text: 'Making location commitments without validating the talent supply is how companies end up with empty offices and missed growth targets. You have already lived that outcome once.', correct: true, why: 'References the customer\'s own experience without being judgmental. Creates urgency rooted in a real consequence they have already experienced.' },
+          { text: 'LinkedIn Talent Solutions gives you real-time data on exactly how much qualified talent exists in Denver, Austin, and Phoenix for the specific roles you are building toward, before you sign a single lease.', correct: true, why: 'Names their three markets. Ties the solution directly to the decision they need to make. Specific and actionable.' },
+          { text: 'I want to get you in front of someone who can pull that market analysis for your three target cities before your next planning session. That conversation feeds directly into the decision you are about to make.', correct: true, why: 'Creates urgency tied to a real planning deadline. Positions the next step as a business input, not a sales call.' },
+          { text: 'We have helped many companies navigate market expansion and have extensive experience across different industries.', correct: false, why: 'Vague social proof that could apply to any company in any situation. Adds no specificity.' },
+          { text: 'I can send over some case studies of companies that have expanded successfully using our platform.', correct: false, why: 'Passive content handoff that delays the conversation and removes urgency from the next step.' },
+          { text: 'Our platform also integrates with most major ATS systems and your existing HR tech stack.', correct: false, why: 'Completely irrelevant to a market validation conversation. A non-sequitur that signals you stopped listening.' }
+        ]
+      }
+    ],
+    goldStandard: '"Making location commitments without validating the talent supply is how companies end up with empty offices and missed growth targets. You have already experienced that once. LinkedIn Talent Solutions gives you real-time data on exactly how much qualified talent exists in Denver, Austin, and Phoenix for the specific roles you are building toward, before you sign a single lease. I want to get you in front of someone who can pull that market analysis for your three target cities before your next planning session. That conversation feeds directly into the decision you are about to make."'
+  }
+];
+
+// State
+let vmScenarioIndex = 0;
+let vmStageIndex = 0;
+let vmStageScores = [];
+let vmTotalScore = 0;
+let vmGameDone = false;
+let vmScenarioScore = 0;
+let vmSelectedOptions = new Set();
+let vmStageSubmitted = false;
+let vmSingleAnswered = false;
+let vmSingleSelected = null;
+
+function vmStopCurrentAudio() {}
+
+function vmRender() {
+  const container = document.getElementById('vm-container');
+  if (!container) return;
+  if (vmGameDone) { vmRenderResults(container); return; }
+  const scenario = vmScenarios[vmScenarioIndex];
+  const stage = scenario.stages[vmStageIndex];
+  const progressDots = vmScenarios.map((_, i) =>
+    '<div class="vm-dot ' + (i < vmScenarioIndex ? 'done' : i === vmScenarioIndex ? 'active' : '') + '"></div>'
+  ).join('');
+  const stagePips = scenario.stages.map((_, i) =>
+    '<div class="vm-stage-pip ' + (i < vmStageIndex ? 'done' : i === vmStageIndex ? 'active' : '') + '">' +
+    (i < vmStageIndex ? '&#10003;' : i + 1) + '</div>'
+  ).join('');
+  let stageHTML = stage.type === 'single' ? vmRenderSingle(stage) : vmRenderMulti(stage);
+  container.innerHTML =
+    '<div class="vm-wrap">' +
+    '<div class="vm-progress-row">' +
+    '<span class="vm-progress-label">Scenario ' + (vmScenarioIndex + 1) + ' of ' + vmScenarios.length + '</span>' +
+    '<div class="vm-dots">' + progressDots + '</div>' +
+    '<span class="vm-score-label">Score: ' + vmTotalScore + '</span>' +
+    '</div>' +
+    '<div class="vm-customer-card">' +
+    '<div class="vm-customer-header">' +
+    '<div><div class="vm-company">' + scenario.company + '</div>' +
+    '<div class="vm-meta">' + scenario.industry + ' &nbsp;&middot;&nbsp; ' + scenario.persona + '</div></div>' +
+    '<div class="vm-call-badge">&#128222; Discovery Call</div>' +
+    '</div>' +
+    '<div class="vm-quote">' + scenario.quote + '</div>' +
+    '</div>' +
+    '<div class="vm-stage-nav">' + stagePips + '</div>' +
+    '<div class="vm-stage-card">' +
+    '<div class="vm-stage-label">' + stage.label + '</div>' +
+    stageHTML +
+    '</div>' +
+    '</div>';
+}
+
+function vmRenderSingle(stage) {
+  let html = '';
+  if (stage.draft) {
+    html += '<div class="vm-draft-box"><div class="vm-draft-label">Rep\'s Draft Summary</div><div class="vm-draft-text">' + stage.draft + '</div></div>';
+  }
+  html += '<div class="vm-stage-prompt">' + stage.prompt + '</div>';
+  html += '<div class="vm-options">';
+  stage.options.forEach(function(opt, i) {
+    let cls = 'vm-opt';
+    if (vmSingleAnswered) {
+      if (opt.correct) cls += ' correct';
+      else if (i === vmSingleSelected) cls += ' wrong';
+      else cls += ' dim';
+    }
+    html += '<button class="' + cls + '" onclick="vmSelectSingle(' + i + ')"' + (vmSingleAnswered ? ' disabled' : '') + '>' + opt.text + '</button>';
+  });
+  html += '</div>';
+  if (vmSingleAnswered) {
+    const chosen = stage.options[vmSingleSelected];
+    const isLastStage = vmStageIndex === 2;
+    const isLastScenario = vmScenarioIndex === vmScenarios.length - 1;
+    html += '<div class="vm-feedback ' + (chosen.correct ? 'correct' : 'wrong') + '"><strong>' + (chosen.correct ? '&#10003; Correct.' : '&#10007; Not quite.') + '</strong> ' + chosen.why + '</div>';
+    if (isLastStage) {
+      html += '<div class="vm-gold-box"><div class="vm-gold-label">&#11088; Gold Standard Vision Match</div><div class="vm-gold-text">' + vmScenarios[vmScenarioIndex].goldStandard + '</div></div>';
+      html += '<button class="vm-next-btn" onclick="vmNextScenario()">' + (isLastScenario ? 'See Final Results &#8594;' : 'Next Customer &#8594;') + '</button>';
+    } else {
+      html += '<button class="vm-next-btn" onclick="vmNextStage()">Next Step &#8594;</button>';
+    }
+  }
+  return html;
+}
+
+function vmRenderMulti(stage) {
+  const required = stage.required;
+  const count = vmSelectedOptions.size;
+  let html = '<div class="vm-stage-prompt">' + stage.prompt + '</div>';
+  html += '<div class="vm-build-counter">Selected: ' + count + ' / ' + required + ' required</div>';
+  html += '<div class="vm-options">';
+  stage.options.forEach(function(opt, i) {
+    let cls = 'vm-opt';
+    if (vmStageSubmitted) {
+      if (opt.correct) cls += ' correct';
+      else if (vmSelectedOptions.has(i)) cls += ' wrong';
+      else cls += ' dim';
+    } else if (vmSelectedOptions.has(i)) {
+      cls += ' selected';
+    }
+    html += '<button class="' + cls + '" onclick="vmToggleOption(' + i + ')"' + (vmStageSubmitted ? ' disabled' : '') + '>' +
+      (vmSelectedOptions.has(i) && !vmStageSubmitted ? '<span class="vm-check">&#10003;</span> ' : '') +
+      opt.text + '</button>';
+  });
+  html += '</div>';
+  if (!vmStageSubmitted && count === required) {
+    html += '<button class="vm-submit-btn" onclick="vmSubmitMulti()">Check My Answer</button>';
+  }
+  if (vmStageSubmitted) {
+    const correctIndices = stage.options.map(function(o, i) { return o.correct ? i : -1; }).filter(function(i) { return i >= 0; });
+    const allCorrect = correctIndices.every(function(i) { return vmSelectedOptions.has(i); }) && vmSelectedOptions.size === required;
+    const wrongSelected = Array.from(vmSelectedOptions).filter(function(i) { return !stage.options[i].correct; });
+    let feedbackText = allCorrect
+      ? '<strong>&#10003; Correct.</strong> ' + correctIndices.map(function(i) { return stage.options[i].why; }).join(' ')
+      : '<strong>&#10007; Not quite.</strong> ' + (wrongSelected.length > 0
+          ? wrongSelected.map(function(i) { return stage.options[i].why; }).join(' ')
+          : correctIndices.filter(function(i) { return !vmSelectedOptions.has(i); }).map(function(i) { return stage.options[i].why; }).join(' '));
+    html += '<div class="vm-feedback ' + (allCorrect ? 'correct' : 'wrong') + '">' + feedbackText + '</div>';
+    const isLastStage = vmStageIndex === 2;
+    const isLastScenario = vmScenarioIndex === vmScenarios.length - 1;
+    if (isLastStage) {
+      html += '<div class="vm-gold-box"><div class="vm-gold-label">&#11088; Gold Standard Vision Match</div><div class="vm-gold-text">' + vmScenarios[vmScenarioIndex].goldStandard + '</div></div>';
+      html += '<button class="vm-next-btn" onclick="vmNextScenario()">' + (isLastScenario ? 'See Final Results &#8594;' : 'Next Customer &#8594;') + '</button>';
+    } else {
+      html += '<button class="vm-next-btn" onclick="vmNextStage()">Next Step &#8594;</button>';
+    }
+  }
+  return html;
+}
+
+function vmToggleOption(idx) {
+  if (vmStageSubmitted) return;
+  const stage = vmScenarios[vmScenarioIndex].stages[vmStageIndex];
+  if (vmSelectedOptions.has(idx)) { vmSelectedOptions.delete(idx); }
+  else if (vmSelectedOptions.size < stage.required) { vmSelectedOptions.add(idx); }
+  vmRender();
+}
+
+function vmSubmitMulti() {
+  const stage = vmScenarios[vmScenarioIndex].stages[vmStageIndex];
+  const correctIndices = stage.options.map(function(o, i) { return o.correct ? i : -1; }).filter(function(i) { return i >= 0; });
+  const allCorrect = correctIndices.every(function(i) { return vmSelectedOptions.has(i); }) && vmSelectedOptions.size === stage.required;
+  if (allCorrect) { vmTotalScore++; vmScenarioScore++; }
+  vmStageSubmitted = true;
+  vmRender();
+}
+
+function vmSelectSingle(idx) {
+  if (vmSingleAnswered) return;
+  const stage = vmScenarios[vmScenarioIndex].stages[vmStageIndex];
+  vmSingleSelected = idx;
+  vmSingleAnswered = true;
+  if (stage.options[idx].correct) { vmTotalScore++; vmScenarioScore++; }
+  vmRender();
+}
+
+function vmNextStage() {
+  vmStageIndex++;
+  vmSelectedOptions = new Set();
+  vmStageSubmitted = false;
+  vmSingleAnswered = false;
+  vmSingleSelected = null;
+  vmRender();
+}
+
+function vmNextScenario() {
+  vmStageScores.push(vmScenarioScore);
+  vmScenarioIndex++;
+  vmStageIndex = 0;
+  vmSelectedOptions = new Set();
+  vmStageSubmitted = false;
+  vmSingleAnswered = false;
+  vmSingleSelected = null;
+  vmScenarioScore = 0;
+  if (vmScenarioIndex >= vmScenarios.length) { vmGameDone = true; }
+  vmRender();
+}
+
+function vmRestart() {
+  vmScenarioIndex = 0; vmStageIndex = 0; vmStageScores = [];
+  vmTotalScore = 0; vmGameDone = false; vmSelectedOptions = new Set();
+  vmStageSubmitted = false; vmSingleAnswered = false; vmSingleSelected = null; vmScenarioScore = 0;
+  vmRender();
+}
+
+function vmRenderResults(container) {
+  const total = vmScenarios.length * 3;
+  const pct = Math.round((vmTotalScore / total) * 100);
+  const emoji = pct >= 80 ? '&#127942;' : pct >= 60 ? '&#128170;' : '&#128218;';
+  const msg = pct >= 80 ? 'You are ready to run a Vision Match on any call.' : pct >= 60 ? 'Solid instincts. A few more reps and this becomes automatic.' : 'Keep drilling. The pattern clicks fast once it is in muscle memory.';
+  const breakdown = vmScenarios.map(function(s, i) {
+    const score = vmStageScores[i] || 0;
+    return '<div class="vm-result-row">' +
+      '<div class="vm-result-company">' + s.company + '</div>' +
+      '<div class="vm-result-score">' + score + '/3</div>' +
+      '<div class="vm-result-bar"><div class="vm-result-fill" style="width:' + Math.round(score / 3 * 100) + '%"></div></div>' +
+      '</div>';
+  }).join('');
+  container.innerHTML =
+    '<div class="vm-wrap"><div class="vm-results-card">' +
+    '<div class="vm-result-emoji">' + emoji + '</div>' +
+    '<div class="vm-result-title">Vision Match Complete</div>' +
+    '<div class="vm-result-big">' + vmTotalScore + ' / ' + total + '</div>' +
+    '<div class="vm-result-pct">' + pct + '% . ' + msg + '</div>' +
+    '<div class="vm-breakdown">' + breakdown + '</div>' +
+    '<button class="vm-retry-btn" onclick="vmRestart()">Run It Again &#8594;</button>' +
+    '</div></div>';
+}
+
+
+let expandedCards = {};
+
+function renderProducts() {
+  const grid = document.getElementById('product-grid');
+  grid.innerHTML = products.map(p => `
+    <div class="product-card ${expandedCards[p.id] ? 'expanded' : ''}" id="card-${p.id}">
+      <div class="card-header" onclick="toggleCard('${p.id}')">
+        <div class="card-icon" style="background:${p.bg}; color:${p.color};">${p.icon}</div>
+        <div>
+          <div class="card-title">${p.name}</div>
+          <div class="card-tagline">${p.tagline}</div>
+        </div>
+      </div>
+      <div class="card-anchor">💡 "${p.anchor}"</div>
+      <div class="card-body">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:7px;">Solves These Pains</div>
+        <div class="pain-pills">${p.pains.map(pain => `<span class="pain-pill">⚡ ${pain}</span>`).join('')}</div>
+        <div class="discovery-pill">${p.discovery}</div>
+      </div>
+      ${expandedCards[p.id] ? `
+      <div style="padding:0 18px 16px;">
+        <div class="fab-section">
+          <div class="fab-label feature">Feature</div>
+          <div class="fab-items">${p.features.map(f => `<div class="fab-item">• ${f}</div>`).join('')}</div>
+        </div>
+        <div class="fab-section">
+          <div class="fab-label advantage">Advantage</div>
+          <div class="fab-items">${p.advantages.map(a => `<div class="fab-item">• ${a}</div>`).join('')}</div>
+        </div>
+        <div class="fab-section">
+          <div class="fab-label benefit">Benefit</div>
+          <div class="fab-items">${p.benefits.map(b => `<div class="fab-item">• ${b}</div>`).join('')}</div>
+        </div>
+      </div>` : ''}
+      <button class="expand-btn" onclick="toggleCard('${p.id}')">${expandedCards[p.id] ? '▲ Collapse' : '▼ Full FAB Breakdown'}</button>
+    </div>
+  `).join('');
+}
+
+function toggleCard(id) {
+  expandedCards[id] = !expandedCards[id];
+  renderProducts();
+}
+
+const bantData = {
+  budget: [
+    { q: "Walk me through what your current recruiting spend looks like. What tools, agencies, or job boards are you paying for?", why: "Shows you what they're spending and what you're competing against.", flag: "probe" },
+    { q: "When a role stays open for 60 or 90 days, has anyone put a dollar figure on what that costs the business?", why: "Most prospects haven't done this math. Helping them do it reframes LinkedIn as an investment, not a cost.", flag: "dig" },
+    { q: "Is there a dedicated budget for talent tools already, or would this need to be built from scratch?", why: "Tells you if budget exists or needs to be created. Two very different sales motions.", flag: "confirm" },
+    { q: "If you found a solution that clearly worked, what would getting it approved actually look like?", why: "Gets to budget authority without feeling like an interrogation.", flag: "confirm" }
+  ],
+  authority: [
+    { q: "Who else typically gets involved in a decision like this? Is it mainly you, or does HR, Finance, or IT weigh in?", why: "Maps the buying committee without being pushy. Most deals die from a stakeholder the rep never talked to.", flag: "probe" },
+    { q: "If you decided today this was the right move, what would the next step look like to get it across the line?", why: "Reveals the real approval process, not the theoretical one. Every step they describe is a potential hurdle.", flag: "dig" },
+    { q: "Is there anyone who's going to push back on a change like this?", why: "Nobody volunteers this. Ask it conversationally and you'll usually get an honest answer.", flag: "dig" },
+    { q: "Who would actually be using this day-to-day? Is it the recruiting team, hiring managers, or both?", why: "Separates the end user from the buyer. They're rarely the same person.", flag: "confirm" }
+  ],
+  need: [
+    { q: "Walk me through how hiring works at your company today. From the moment a req opens to the day someone starts.", why: "The widest open door on the call. Don't ask about pain yet. Let them describe their world and the gaps will surface on their own.", flag: "probe" },
+    { q: "What's giving you the biggest headache in your recruiting process right now?", why: "Focuses the conversation. You can only solve one or two things in a first call. This tells you which one matters most.", flag: "dig" },
+    { q: "What happens to the business if this doesn't get solved in the next six months?", why: "The most important question on the call. If they can answer it, the AE has a business case.", flag: "dig" },
+    { q: "Have you tried to fix this before? What happened?", why: "Surfaces past attempts and failed vendors. If they've tried something similar, the AE needs to know why it failed.", flag: "probe" },
+    { q: "On a scale of 1 to 10, how urgent is this compared to everything else on your plate?", why: "Anything below a 7 means you're competing with internal priorities, not just other vendors. Ask what would make it a 10.", flag: "confirm" }
+  ],
+  timeline: [
+    { q: "Is there a specific date or business event creating pressure here? A headcount plan, product launch, new fiscal year?", why: "External deadlines create the strongest urgency. Find the forcing function.", flag: "probe" },
+    { q: "How long has this been a problem, and what's kept you from addressing it sooner?", why: "Tells you if this is chronic pain or a recent trigger. The reasons they give for not acting sooner will resurface as objections.", flag: "dig" },
+    { q: "If everything lined up on your end, how quickly could you realistically move on something like this?", why: "Gets them to self-assess their decision speed. Tells you if this is a 30-day or 6-month deal.", flag: "confirm" },
+    { q: "Are there other initiatives competing for budget or attention right now that could slow this down?", why: "Internal competition kills deals quietly. Surface it before it surfaces as a surprise.", flag: "dig" }
+  ]
+};
+
+const flagLabels = { probe: '🔍 Open probe', dig: '⚡ Dig deeper', confirm: '✅ Confirm & close' };
+
+function renderBANT() {
+  const clsMap = { budget:'b', authority:'a', need:'n', timeline:'t' };
+  Object.keys(bantData).forEach(key => {
+    const cls = clsMap[key];
+    const container = document.getElementById(key + '-questions');
+    if (!container) return;
+    container.innerHTML = bantData[key].map((q, i) => `
+      <div class="bant-q-card ${cls}">
+        <div class="bant-q-top">
+          <div class="bant-q-num">${i + 1}</div>
+          <div class="bant-q-text">"${q.q}"</div>
+        </div>
+        <div class="bant-q-bottom">
+          <div class="bant-q-why"><strong>Why ask it:</strong> ${q.why}</div>
+          <div class="bant-q-flag ${q.flag}">${flagLabels[q.flag]}</div>
+        </div>
+      </div>
+    `).join('');
+  });
+}
+
+function showDiscovery(view) {
+  document.getElementById('disc-questions').style.display = view === 'questions' ? 'block' : 'none';
+  document.getElementById('disc-handoff').style.display = view === 'handoff' ? 'block' : 'none';
+  document.querySelectorAll('.bant-sub').forEach((el, i) => {
+    el.classList.toggle('active', ['questions','handoff'][i] === view);
+  });
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function copyHandoff() {
+  const company = document.getElementById('f-company').value || '[Company]';
+  const contact = document.getElementById('f-contact').value || '[Contact]';
+  const budget = document.getElementById('f-budget').value || '.';
+  const authority = document.getElementById('f-authority').value || '.';
+  const need = document.getElementById('f-need').value || '.';
+  const timeline = document.getElementById('f-timeline').value || '.';
+  const notes = document.getElementById('f-notes').value || '.';
+  const text = `AE HANDOFF NOTE: ${company}\nContact: ${contact}\n\nBUDGET\n${budget}\n\nAUTHORITY & BUYING COMMITTEE\n${authority}\n\nNEED & PAIN\n${need}\n\nTIMELINE & URGENCY\n${timeline}\n\nAE PREP NOTES / OPEN QUESTIONS\n${notes}`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✅ Copied to clipboard!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Handoff Note'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function showTab(tab) {
+  ['products','compare','discovery','stories','stats','quiz'].forEach(t => {
+    document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab').forEach((el, i) => {
+    el.classList.toggle('active', ['products','compare','discovery','stories','stats','quiz'][i] === tab);
+  });
+}
+
+function switchCompare(type) {
+  document.getElementById('compare-jobs').style.display = type === 'jobs' ? 'block' : 'none';
+  document.getElementById('compare-recruiter').style.display = type === 'recruiter' ? 'block' : 'none';
+  document.querySelectorAll('.tier-badge').forEach((el, i) => {
+    el.classList.toggle('active', (i === 0 && type === 'jobs') || (i === 1 && type === 'recruiter'));
+  });
+}
+
+const stories = [
+  {
+    company: 'HERE Technologies',
+    url: 'https://business.linkedin.com/hire/customer-stories/here',
+    oneliner: 'Global location data and mapping platform used by automakers, enterprises, and cities worldwide.',
+    industry: 'Technology / Mapping',
+    size: 'Enterprise (9,000+ employees)',
+    persona: 'Head of Global Talent Acquisition',
+    product: 'LinkedIn Recruiter (Enterprise)',
+    before: 'HERE had a lean TA team of 40 recruiters trying to fill a rapidly growing pipeline of technical roles during the Great Resignation. Recruiters were maxed out, response rates to outreach were average, and the business was under pressure to fill roles faster. They knew peer-to-peer outreach worked better than recruiter outreach. but were limited by their Recruiter seat count and couldn\'t scale that model.',
+    businessPain: 'Every week those roles sat open, product launches slipped and revenue was delayed.',
+    solution: 'LinkedIn gave HERE an Enterprise license with unlimited Recruiter seats. HERE built a Talent Champion program: TA loaded candidates into project folders, gave employees outreach templates, and let peers do the reaching out. Recruiters only stepped in when a candidate responded.',
+    metrics: [
+      { num: '200+', label: 'Employees turned into sourcers, scaling the team without adding headcount' },
+      { num: '60% higher', label: 'Response rate when peers reach out vs recruiters. More responses, fewer missed hires.' },
+      { num: '50%+', label: 'Of interview-stage candidates engaged by Champions, not recruiters' },
+      { num: '30%', label: 'Reduction in time-to-fill for hard-to-find technical roles' }
+    ],
+    quote: '"As soon as we were told we could have unlimited licenses, it was like a light bulb moment. We turned the entire business into an extension of our TA team."<br><span class="story-attr">Gabor Talan, Head of Global TA, HERE Technologies</span>',
+    callReference: 'Drop this when a prospect says their recruiter team is stretched thin or they can\'t fill technical roles fast enough. The line that lands: "One of our customers. a global tech company. had a team of 40 recruiters and still couldn\'t keep up. They mobilized 200 internal employees as peer sourcers using LinkedIn, cut response rates nearly in half, and reduced time-to-fill by 30%. Their engineers reached out to other engineers. Candidates responded immediately."',
+    bantSignal: '"Is your recruiting team the only one doing outreach. or do hiring managers and engineers ever get involved in finding candidates?"'
+  },
+  {
+        company: 'Boohoo',
+    url: 'https://business.linkedin.com/hire/customer-stories/boohoo',
+    oneliner: 'One of the world\'s largest online fashion retailers, operating 13 brands with around 5,000 employees globally.',
+    industry: 'Retail / Fashion',
+    size: 'Mid-Market (5,000 employees)',
+    persona: 'Group Head of Talent Acquisition',
+    product: 'LinkedIn Recruiter + Job Slots',
+    before: 'Boohoo was spending heavily on external recruitment agencies, which accounted for 45% of all hires. A TA team of just 8 people was stretched thin, brand awareness was low, and the company had no scalable way to source talent directly.',
+    businessPain: 'Agency fees were consuming nearly half the hiring budget with nothing to show for employer brand.',
+    solution: 'Boohoo adopted LinkedIn\'s full Enterprise suite including Recruiter, Job Slots, and Career Pages. LinkedIn and Boohoo co-built an onboarding plan and within 90 days the team had hard evidence of cost savings and efficiency gains.',
+    metrics: [
+      { num: '95%', label: 'Reduction in agency spend within 90 days' },
+      { num: '45%', label: 'Of hires previously going through agencies. Now sourced directly.' },
+      { num: '8', label: 'Person TA team managing enterprise-level hiring with LinkedIn\'s full suite' },
+      { num: '90 days', label: 'To prove ROI and show concrete cost savings' }
+    ],
+    quote: '"Within the first 90 days, we could show concrete evidence of cost savings and improved recruitment efficiency."<br><span class="story-attr">Gemma Kyle, Group Head of Talent Acquisition, Boohoo</span>',
+    callReference: 'Use this when a prospect is over-reliant on agencies and knows it. "Boohoo was running 45% of their hires through agencies. Within 90 days of switching to LinkedIn, they cut agency spend by 95%. A team of 8 replaced what agencies were doing at a fraction of the cost."',
+    bantSignal: '"What percentage of your hires right now are coming through staffing agencies, and what is that costing you annually?"'
+  },
+  {
+    company: 'Aurecon',
+    url: 'https://business.linkedin.com/hire/customer-stories/aurecon',
+    oneliner: 'Engineering and infrastructure design firm operating across Asia-Pacific, Africa, and the Middle East.',
+    industry: 'Engineering / Infrastructure',
+    size: 'Mid-Market to Enterprise (3,000+ employees)',
+    persona: 'Talent Acquisition Manager / Recruiting Lead',
+    product: 'LinkedIn Hiring Assistant (LIHA)',
+    before: 'Aurecon\'s TA team was spending a disproportionate amount of time on repetitive sourcing tasks. running searches, reviewing profiles, and managing outreach queues. Niche engineering roles were especially time-intensive because the talent pool is small and traditional keyword searches often missed qualified candidates with adjacent skill sets.',
+    businessPain: 'Recruiters were too busy searching to close candidates, so roles stayed open longer and cost the business more.',
+    solution: 'Aurecon used LinkedIn Hiring Assistant to run sourcing continuously in the background. The AI surfaced a curated shortlist and learned from feedback over time. Recruiters focused on evaluating and engaging rather than searching.',
+    metrics: [
+      { num: '30%', label: 'Estimated reduction in time spent on sourcing tasks' },
+      { num: '7-9/10', label: 'Quality rating recruiters gave AI-sourced candidates. Less screening, better output.' },
+      { num: 'Unicorns', label: 'Previously missed "unicorn" candidates surfaced in niche markets' },
+      { num: 'Seamless', label: 'AI learned from feedback. no need to retrain, consistent quality over time' }
+    ],
+    quote: '"Recruiters could now focus on strategic conversations with hiring managers rather than repetitive search tasks."<br><span class="story-attr">Aurecon TA Team</span>',
+    callReference: 'Lead with this when a recruiter says they spend most of their day searching. The frame: "An engineering firm we work with. niche roles, small talent pools. estimated their recruiters were spending 30% of their time just on sourcing. After using LinkedIn\'s AI Hiring Assistant, that sourcing burden dropped significantly and the profiles it surfaced rated 7 to 9 out of 10 in quality. Their word, not ours."',
+    bantSignal: '"If you had to guess. what percentage of your recruiters\' day goes toward actually finding and reviewing profiles versus engaging and interviewing candidates?"'
+  },
+  {
+    company: 'Autodesk',
+    url: 'https://business.linkedin.com/talent-solutions/case-studies/talent-insights/autodesk',
+    oneliner: 'Software company behind AutoCAD, Revit, and Fusion 360, used by engineers and designers globally.',
+    industry: 'Software / Design Technology',
+    size: 'Enterprise (10,000+ employees)',
+    persona: 'Senior Technical Recruiter',
+    product: 'LinkedIn Talent Insights',
+    before: 'A recruiter at Autodesk was handed a req with 11 must-haves. Her instinct said the pool would be tiny but she had no data to push back with. The role was moving forward on criteria that guaranteed a long, painful search.',
+    businessPain: 'A role that should have closed in weeks was dragging into months, costing the team time and the business output.',
+    solution: 'She pulled a Talent Insights report: fewer than 300 people globally fit all 11 criteria, and 30% had recently changed jobs. She presented the data, got requirements cut in half, and filled the role in two weeks.',
+    metrics: [
+      { num: '2 weeks', label: 'Time to make an offer after adjusting the criteria' },
+      { num: '50%', label: 'Reduction in role requirements after presenting Talent Insights data' },
+      { num: '2 weeks', label: 'Time to extend an offer once criteria were adjusted' },
+      { num: 'Data wins', label: 'Recruiter used market data to reset expectations and close faster' }
+    ],
+    quote: '"Now we have real-time, exact data on the talent landscape so we can have more productive conversations with hiring managers and make better decisions."<br><span class="story-attr">Jennifer Kopatz, Senior Recruiter, Autodesk</span>',
+    callReference: 'This one is gold for any company where recruiters complain about unrealistic hiring managers. The story: "An Autodesk recruiter was handed a req with 11 must-haves. She pulled a Talent Insights report. fewer than 300 people fit globally. She walked into the hiring manager\'s office with the data, got requirements cut in half, and filled the role in two weeks. That\'s the difference between a recruiter who guesses and one who advises."',
+    bantSignal: '"When a hiring manager comes to you with a wish list for a role. how do you typically push back on that? Is it based on gut feeling, or do you have data to support the conversation?"'
+  },
+  {
+    company: 'Zillow Group',
+    url: 'https://business.linkedin.com/talent-solutions/case-studies/real-estate/zillow-group-linkedin-talent-solutions-success-story',
+    oneliner: 'The leading US real estate marketplace connecting buyers, sellers, renters, and agents.',
+    industry: 'Real Estate / Technology',
+    size: 'Mid-Market to Enterprise (5,000+ employees)',
+    persona: 'Senior Recruiting Manager + Hiring Manager',
+    product: 'LinkedIn Recruiter',
+    before: 'Zillow was competing for top technical and sales talent in one of the most competitive hiring markets in the country. Their recruiting team was doing all the sourcing, but best-in-class candidates. especially passive talent. weren\'t responding to recruiter outreach at meaningful rates. Hiring managers sat on the sideline while recruiters struggled to fill specialized roles with people who actually fit the culture.',
+    businessPain: 'Slow hiring was a direct threat to growth targets. The right candidates were not responding and time was running out.',
+    solution: 'Zillow gave Recruiter seats to hiring managers across every department. The CEO got involved in closing candidates. They called it collaborative sourcing. Managers outreached, recruiters managed the process.',
+    metrics: [
+      { num: '34%', label: 'Response rate when hiring managers send the outreach. Industry average is under 20%.' },
+      { num: '2x faster', label: 'Hiring velocity when managers are involved in sourcing alongside recruiters' },
+      { num: '40%', label: 'Team headcount growth in 6 months, majority sourced via LinkedIn' },
+      { num: '33%', label: 'Of one manager\'s direct report hires came from his own LinkedIn outreach' }
+    ],
+    quote: '"LinkedIn Recruiter has been incredibly valuable in hitting passive candidates. I send InMails reinforcing that I am the hiring manager and get a response rate of 34%. That is well worth my while."<br><span class="story-attr">Jason Gurney, Group Manager of Technology, Zillow Group</span>',
+    callReference: 'Use this when a prospect says their recruiters are the only ones sourcing or when hiring managers are disengaged from the process. The hook: "Zillow gave LinkedIn Recruiter seats to hiring managers. not just recruiters. When the actual hiring manager sends an InMail, the response rate jumps to 34%. One manager grew his team 40% in six months mostly through his own LinkedIn outreach. The CEO was personally closing candidates. That\'s what collaborative sourcing looks like."',
+    bantSignal: '"How involved are your hiring managers in actually finding and reaching out to candidates. or does all of that fall on your recruiting team?"'
+  },
+  {
+    company: 'Abercrombie & Fitch',
+    url: 'https://business.linkedin.com/hire/customer-stories/abercrombie-and-fitch',
+    oneliner: 'Global apparel retailer running A&F, Hollister, and other brands across hundreds of stores worldwide.',
+    industry: 'Retail / Consumer',
+    size: 'Enterprise (30,000+ employees)',
+    persona: 'Talent Acquisition Team / Recruiting Operations',
+    product: 'LinkedIn Recruiter + ATS Integration (Recruiter System Connect)',
+    before: 'A&F\'s TA team was managing candidate data across multiple disconnected platforms. Recruiters regularly spent significant time jumping between LinkedIn Recruiter and their ATS (SmartRecruiters) to piece together a complete picture of any given candidate. Worse, they frequently reached out to the same candidates in duplicate because there was no shared visibility into who had already been contacted.',
+    businessPain: 'Recruiters were wasting hours on research and accidentally contacting the same candidates twice, damaging the brand.',
+    solution: 'A&F activated LinkedIn Recruiter System Connect, linking LinkedIn Recruiter directly to SmartRecruiters. Full candidate history in one view. No tab-switching, no duplicate outreach.',
+    metrics: [
+      { num: '50%', label: 'Reduction in time spent on candidate research' },
+      { num: '0', label: 'Duplicate outreach incidents. full team visibility into candidate touchpoints' },
+      { num: '1 view', label: 'All candidate history in one place. No more tab-switching or missed context.' },
+      { num: 'Better CX', label: 'Candidates received personalized outreach, improving brand perception' }
+    ],
+    quote: '"Disconnected systems meant we operated in silos, dealing with gaps in candidate history that caused overlap in outreach."<br><span class="story-attr">Jared Best, Talent Acquisition, Abercrombie &amp; Fitch</span>',
+    callReference: 'Use this when a prospect mentions ATS integration or recruiter coordination issues. "A&F was running LinkedIn and their ATS in separate tabs. Recruiters were reaching out to the same candidates twice. After connecting the systems, research time dropped 50% and duplicate outreach stopped."',
+    bantSignal: '"Are your recruiters working out of LinkedIn and an ATS separately. and do you ever run into situations where multiple people reach out to the same candidate without knowing?"'
+  },
+  {
+    company: 'AlphaSights',
+    url: 'https://business.linkedin.com/hire/customer-stories/alphasights',
+    oneliner: 'Knowledge-on-demand firm connecting business leaders with industry experts for faster decision-making.',
+    industry: 'Professional Services / Knowledge Management',
+    size: 'Mid-Market (1,500+ employees across 9 global offices)',
+    persona: 'VP / Director of Talent Acquisition + L&D Leadership',
+    product: 'LinkedIn Recruiter + LinkedIn Learning',
+    before: 'AlphaSights was scaling fast across 9 offices globally. Their engagement surveys were sending a clear signal: employees wanted more development. Without a structured L&D program, top performers were at risk of leaving.',
+    businessPain: 'Top performers were leaving and the company had no data-driven way to stop it, making every exit a cost they could not predict.',
+    solution: 'AlphaSights used LinkedIn Recruiter to scale across 9 offices and added LinkedIn Learning based on direct employee feedback. They tied learning paths to specific OKRs. Senior leaders championed it and survey participation hit 90%.',
+    metrics: [
+      { num: '90%', label: 'Employee survey completion rate. driving data-informed L&D decisions' },
+      { num: '9 offices', label: 'Global locations scaled simultaneously using LinkedIn Recruiter' },
+      { num: 'OKR-linked', label: 'Learning tied directly to business goals, not just checkbox training' },
+      { num: 'Hire + retain', label: 'LinkedIn used to attract new talent and keep existing talent growing' }
+    ],
+    quote: '"Employee feedback showed we needed to focus more on professional development. LinkedIn Learning became our answer."<br><span class="story-attr">Tara Johnson, Director of Recruitment, AlphaSights</span>',
+    callReference: 'This is your hire-and-retain story. use it when a prospect is dealing with both recruiting volume AND attrition in the same breath. The frame: "AlphaSights was hiring fast across 9 global offices but their engagement surveys were telling them employees wanted more development. They added LinkedIn Learning and tied it to actual OKRs. Survey participation hit 90%. They\'re using LinkedIn to attract talent and keep it. two problems, one ecosystem."',
+    bantSignal: '"You mentioned hiring is a priority. but what happens to the people you bring in? Are you seeing the retention you\'d expect, or does development and career growth come up as a reason people leave?"'
+  },
+  {
+    company: 'Intel',
+    url: 'https://business.linkedin.com/talent-solutions/case-studies/talent-insights/intel',
+    oneliner: 'One of the world\'s largest semiconductor companies, building chips that power everything from consumer devices to data centers.',
+    industry: 'Semiconductors / Technology',
+    size: 'Enterprise (107,000+ employees globally)',
+    persona: 'TA / Employer Brand Leader (Regional)',
+    product: 'LinkedIn Talent Insights',
+    before: 'Intel\'s Poland team needed to hire C and C++ engineers in a market they didn\'t fully understand. They had a limited marketing budget and no clear data on where qualified talent actually lived, which companies were concentrating that talent, or how competitive the market was. They were about to launch a broad campaign without knowing if it would land.',
+    businessPain: 'Committing to the wrong city for expansion would have meant wasted lease costs and a hiring crisis with no talent pipeline.',
+    solution: 'Intel used Talent Insights to map the market before spending anything. Krakow had concentrated engineer talent. Warsaw did not. They ran a targeted billboard campaign and recruitment event in Krakow and saw results within a month.',
+    metrics: [
+      { num: '20%', label: 'Increase in career site visits within one month of launching the targeted campaign' },
+      { num: '2', label: 'Cities identified as top talent concentrations via Talent Insights before any spend' },
+      { num: 'Krakow', label: 'Chosen strategically over Warsaw based on talent concentration data. not gut feeling' },
+      { num: 'Data-first', label: 'Billboard + recruitment event strategy validated by market intelligence, not assumptions' }
+    ],
+    quote: '"When we plan an employer branding campaign, we cannot rely on gut feeling. LinkedIn Talent Insights gave us the data to make the right call."<br><span class="story-attr">Intel TA Team, Poland</span>',
+    callReference: 'Perfect for any company planning expansion, new market hiring, or an employer branding campaign. The story: "Intel was hiring C and C++ engineers in Poland with a tight marketing budget. Before they spent a dollar, they used LinkedIn Talent Insights to identify exactly which cities had the most concentrated talent. They built a targeted campaign around that data, ran a local event, and saw a 20% jump in career site traffic in one month. That\'s hiring strategy built on facts, not gut."',
+    bantSignal: '"When you\'re planning hiring in a new city or market. how do you validate that the talent actually exists there before committing budget to a campaign or office?"'
+  }
+];
+
+let activeStoryFilter = 'All';
+let expandedStories = {};
+
+function renderStories() {
+  const products = ['All', ...new Set(stories.map(s => s.product.split(' (')[0].split(' +')[0]))];
+  const filterLabels = { 'All': '🔎 All Stories', 'LinkedIn Recruiter': '🔍 Recruiter', 'LinkedIn Hiring Assistant': '🤖 Hiring Assistant', 'LinkedIn Talent Insights': '📊 Talent Insights', 'LinkedIn Recruiter': '🔍 Recruiter' };
+  
+  document.getElementById('stories-filter-row').innerHTML = [
+    `<button class="story-filter ${activeStoryFilter === 'All' ? 'active' : ''}" onclick="filterStories('All')">🔎 All Stories</button>`,
+    `<button class="story-filter ${activeStoryFilter === 'LinkedIn Recruiter' ? 'active' : ''}" onclick="filterStories('LinkedIn Recruiter')">🔍 Recruiter</button>`,
+    `<button class="story-filter ${activeStoryFilter === 'LinkedIn Hiring Assistant' ? 'active' : ''}" onclick="filterStories('LinkedIn Hiring Assistant')">🤖 Hiring Assistant</button>`,
+    `<button class="story-filter ${activeStoryFilter === 'LinkedIn Talent Insights' ? 'active' : ''}" onclick="filterStories('LinkedIn Talent Insights')">📊 Talent Insights</button>`,
+    `<button class="story-filter ${activeStoryFilter === 'AlphaSights' ? 'active' : ''}" onclick="filterStories('AlphaSights')">📚 Learning</button>`
+  ].join('');
+
+  const filtered = activeStoryFilter === 'All' ? stories
+    : activeStoryFilter === 'AlphaSights' ? stories.filter(s => s.company === 'AlphaSights')
+    : stories.filter(s => s.product.includes(activeStoryFilter));
+
+  document.getElementById('stories-grid').innerHTML = filtered.map((s, i) => `
+    <div class="story-card">
+      <div class="story-card-top">
+        <div class="story-product-badge">${s.product.split('(')[0].trim()}</div>
+        <a href="${s.url}" target="_blank" rel="noopener" class="story-company-link">
+          <div class="story-company">${s.company} <span class="story-link-icon">↗</span></div>
+        </a>
+        <div class="story-oneliner">${s.oneliner}</div>
+        <div class="story-meta-row">
+          <span class="story-meta-tag">🏭 ${s.industry}</span>
+          <span class="story-meta-tag">🏢 ${s.size}</span>
+          <span class="story-meta-tag">👤 ${s.persona}</span>
+        </div>
+      </div>
+
+      <div class="story-section">
+        <div class="story-section-label before">📌 Before LinkedIn. The State They Were In</div>
+        <div class="story-section-text">${s.before}</div>
+        <div class="story-pain-impact">⚡ Business impact: ${s.businessPain}</div>
+      </div>
+
+      <div class="story-metrics-row">
+        ${s.metrics.map(m => `
+          <div class="story-metric">
+            <div class="story-metric-num">${m.num}</div>
+            <div class="story-metric-label">${m.label}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      ${expandedStories[i] ? `
+      <div class="story-section">
+        <div class="story-section-label solution">✅ The Solution</div>
+        <div class="story-section-text">${s.solution}</div>
+      </div>
+
+      '<div class="story-quote">${s.quote}</div>' +
+
+      <div class="story-section">
+        <div class="story-section-label call">💬 How to Reference This on a Call</div>
+        <div class="story-section-text">${s.callReference}</div>
+      </div>
+
+      <div class="story-bant-signal">${s.bantSignal}</div>
+      ` : ''}
+
+      <button class="story-expand-btn" onclick="toggleStory(${i})">
+        ${expandedStories[i] ? '▲ Show Less' : '▼ See Solution, Quote & Call Reference'}
+      </button>
+    </div>
+  `).join('');
+}
+
+function toggleStory(i) {
+  expandedStories[i] = !expandedStories[i];
+  renderStories();
+}
+
+function filterStories(product) {
+  activeStoryFilter = product;
+  expandedStories = {};
+  renderStories();
+}
+const statsData = [
+  {
+    category: '🌐 The Network',
+    stats: [
+      { number: '1.3B+', desc: 'Members on LinkedIn globally', use: 'A prospect says they post on Indeed or ZipRecruiter. No other platform gives you access to a talent pool this size.', source: 'January 2026' },
+      { number: '70M+', desc: 'Job seekers visit LinkedIn Jobs every week', use: 'A prospect questions whether their jobs will get seen. 70 million people are actively looking every single week.', source: 'January 2026' },
+      { number: '207M+', desc: 'Frontline and hourly workers are on LinkedIn', use: 'A prospect assumes LinkedIn is only for white-collar or office professionals. This stat shuts that down directly. Over 207 million frontline and hourly workers are active on the platform. The talent is there regardless of the role type.', source: 'January 2026' },
+      { number: '8,200/min', desc: 'Applications submitted on LinkedIn every minute', use: 'A prospect says candidates aren\'t applying. The volume is there. The question is whether they\'re positioned to capture it.', source: 'January 2026' },
+      { number: '92/min', desc: 'People add a new role to their LinkedIn profile every minute', use: 'A prospect is worried about reaching passive talent. People are actively updating their profiles and signaling readiness constantly.', source: 'January 2025 to December 2025' },
+      { number: '95%', desc: 'Of Fortune 100 companies use LinkedIn Talent Solutions', use: 'A prospect asks who else uses LinkedIn. The best companies in the world trust this platform to build their teams.', source: 'October 2025' },
+      { number: '6M+', desc: 'Talent professionals actively use LinkedIn', use: 'A prospect wonders if their competitors are on LinkedIn. Odds are very high that they are.', source: 'July 2025' },
+    ]
+  },
+  {
+    category: '🔍 LinkedIn Recruiter',
+    stats: [
+      { number: '2X', desc: 'More likely to get a recruiter message when Open to Work is on', use: 'A prospect says they struggle to get responses from passive candidates. LinkedIn signals surface warm talent automatically.', source: 'January 2024' },
+      { number: '42%', desc: 'Of recruiters use a skills filter to search for candidates weekly', use: 'A prospect relies only on title and years of experience to find talent. Skills-based search finds people they would have missed entirely.', source: 'March 2025' },
+    ]
+  },
+  {
+    category: '🤖 Hiring Assistant',
+    stats: [
+      { number: '66%', desc: 'Higher InMail accept rate for Hiring Assistant-sourced candidates vs traditional sourcing', use: 'A prospect says their outreach isn\'t getting responses. Hiring Assistant surfaces candidates who are more likely to engage before a single message is sent.', source: 'March 2026' },
+      { number: '81%', desc: 'Fewer profiles reviewed to find a qualified candidate match with Hiring Assistant', use: 'A prospect says their recruiters spend too much time screening. Hiring Assistant dramatically cuts the noise before humans are involved.', source: 'March 2026' },
+      { number: '1.5 hrs', desc: 'Saved per role in identifying top applicants using Hiring Assistant', use: 'A prospect says their team is stretched thin. This is time handed back to every recruiter on every single req.', source: 'March 2026' },
+    ]
+  },
+  {
+    category: '🚀 Hiring Pro',
+    stats: [
+      { number: '60%', desc: 'Of Hiring Pro users found a candidate to interview within the first week', use: 'A prospect without a dedicated recruiter is overwhelmed by hiring. Hiring Pro gets them to a real candidate in days, not months.', source: 'November 2025' },
+      { number: '6+ hrs', desc: 'Saved per week for Hiring Pro users who report time savings', use: 'A prospect says hiring is pulling a manager away from the actual business. Six hours a week is real time back on the things that matter.', source: 'November 2025' },
+    ]
+  },
+  {
+    category: '📚 LinkedIn Learning',
+    stats: [
+      { number: '3.4X', desc: 'Faster AI skill development for employees at organizations using LinkedIn Learning vs those without', use: 'A prospect is worried about skill gaps or staying competitive. LinkedIn Learning directly accelerates the capabilities their team needs most right now.', source: 'September 2025' },
+      { number: '25K+', desc: 'Courses across business, creative, and technical categories', use: 'A prospect asks if LinkedIn Learning covers their specific needs. With 25,000 courses, the answer is almost certainly yes.', source: 'January 2026' },
+      { number: '147 hrs', desc: 'Of learning content consumed on LinkedIn every minute globally', use: 'A prospect doubts whether employees actually use learning platforms. The engagement is there at massive scale.', source: 'January 2026' },
+    ]
+  },
+];
+
+function renderStats() {
+  document.getElementById('stats-container').innerHTML = statsData.map(cat => `
+    <div class="stats-category">
+      <div class="stats-category-title">${cat.category}</div>
+      <div class="stats-grid">
+        ${cat.stats.map(s => `
+          <div class="stat-card">
+            <div class="stat-number">${s.number}</div>
+            <div class="stat-desc">${s.desc}</div>
+            <div class="stat-use">${s.use}</div>
+            <div class="stat-source">Source: ${s.source}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+renderProducts();
+renderBANT();
+renderStories();
+renderStats();
+vmRender();
+</script>
+</body>
+</html>
